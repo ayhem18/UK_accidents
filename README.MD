@@ -14,3 +14,14 @@ This repository is a template for the final project of big data course in IU-202
 **Important Note:** You cannot change the content of the script `main.sh` since it will be used for assessment purposes.
 
 **Another Note:** The notebooks in `notebooks/` folder are used only for learning purposes since you need to put all Python scripts of the pipeline in `scripts/` folder. During the assessment, the grader can delete the folder `notebooks/` to check that your pipeline does not depend on its content.
+
+
+
+# How to run
+
+1. create a new branch on git
+2. run the python script: scripts\preprocess_data.py from the project director: to download the preprocessed version of the cvs files
+3. The main issue with the \copy command: the one that copies data from the csv files to the database tables is that it takes ABSOLUTE PATH
+AT the moment, I am not sure how to do that (but at the end it is doable under the assumption that everything will be run in sandbox )
+4. change the paths in the last copy command to the absolute paths of the data in your machine 
+5. log in to the postgres server from the project directory and run the sql script: sql\create_table.sql

@@ -68,6 +68,13 @@ def new_col_names(old_new_names, df):
     return df
 
 
+def to_columns(df: pd.DataFrame, function):
+    # this function applies a given function on each column names of the given dataframe
+    df.columns = [function(c) for c in df.columns]
+    return df
+
+
+
 def detect_outliers(df, column):
     # first calculate the percentiles
     Q3, Q1 = np.percentile(df[df[column].notnull()][column], [75 ,25]) # find the quantiles for non-nan values
