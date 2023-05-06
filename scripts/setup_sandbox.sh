@@ -8,6 +8,8 @@ source /root/.bashrc
 
 ## Correct postgres configuration
 sed -i '1s/^/local all all trust\n/' /var/lib/pgsql/9.6/data/pg_hba.conf
+sed -i '1s/^/host all all 0.0.0.0\/0 trust\n/' /var/lib/pgsql/9.6/data/pg_hba.conf
+
 sudo systemctl restart postgresql-9.6
 
 ## Install Python 3
@@ -23,10 +25,10 @@ cd ~/Python-3.8*/
 sudo make altinstall
 
 # Create symlinks for convenience of use
-yes | rm /usr/bin/python
-ln -s /usr/local/bin/python3.8 /usr/bin/python
-mv /usr/bin/pip /usr/bin/pip_bak
-ln -s /usr/local/bin/pip3.8 /usr/bin/pip
+#yes | rm /usr/bin/python
+ln -s /usr/local/bin/python3.8 /usr/bin/python3
+#mv /usr/bin/pip3 /usr/bin/pip_bak
+ln -s /usr/local/bin/pip3.8 /usr/bin/pip3
 
 # Sqoop
 wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar --no-check-certificate -P ~
