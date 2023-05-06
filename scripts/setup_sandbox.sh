@@ -1,3 +1,7 @@
+## vim usage
+echo "export TERM=xterm vim" >> /root/.bashrc
+source /root/.bashrc
+
 ## Correct postgres configuration
 sed -i '1s/^/local all all trust\n/' file
 
