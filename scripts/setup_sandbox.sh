@@ -1,9 +1,14 @@
+## update packages
+rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
+yum update
+
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
 source /root/.bashrc
 
 ## Correct postgres configuration
 sed -i '1s/^/local all all trust\n/' file
+sudo systemctl restart postgresql-9.6
 
 ## Install Python 3
 sudo yum -y groupinstall "Development Tools"
