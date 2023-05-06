@@ -27,9 +27,9 @@ AT the moment, I am not sure how to do that (but at the end it is doable under t
 5. log in to the postgres server from the project directory and run the sql script: sql\create_table.sql
 
 # How to run
-Follow this guide to install hadoop sandbox: https://hackmd.io/@firasj/BkSQJQ8eh. (We used version 3.0.1)\\
-Connect to the sandbox: `ssh -p 2222 root@localhost`
-Clone repository:\\
+Follow this guide to install hadoop sandbox: https://hackmd.io/@firasj/BkSQJQ8eh. (We used version 3.0.1)  
+Connect to the sandbox: `ssh -p 2222 root@localhost`  
+Clone repository:  
 `git clone git@github.com:ayhem18/UK_accidents.git && cd UK_accidents`\\
 Prepare the sandbox and environment:\\
 `bash scripts/setup_sandbox.sh`\\
