@@ -42,12 +42,12 @@ Load data:
 `psql -U postgres -d bd_project -f sql/create_table.sql` 
 Ensure that HDFS and YARN services are running...  
 Use Sqoop to transfer data from PostgreSQL to HDFS:  
-`sqoop import-all-tables\
-  -Dmapreduce.job.user.classpath.first=true\
-  -Dorg.apache.sqoop.splitter.allow_text_splitter=true\
-  --connect jdbc:postgresql://localhost/bd_project\
-  --username postgres\
-  --warehouse-dir /project\
-  --as-avrodatafile\
-  --compression-codec=snappy\
+`sqoop import-all-tables\  
+  -Dmapreduce.job.user.classpath.first=true\  
+  -Dorg.apache.sqoop.splitter.allow_text_splitter=true\  
+  --connect jdbc:postgresql://localhost/bd_project\  
+  --username postgres\  
+  --warehouse-dir /project\  
+  --as-avrodatafile\  
+  --compression-codec=snappy\  
   --outdir /project/avsc`  
