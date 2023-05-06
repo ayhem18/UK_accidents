@@ -14,7 +14,7 @@ cd ~/Python-3.8*/
 sudo make altinstall
 
 # Create symlinks for convenience of use
-rm /usr/bin/python | yes
+yes | rm /usr/bin/python
 ln -s /usr/local/bin/python3.8 /usr/bin/python
 mv /usr/bin/pip /usr/bin/pip_bak
 ln -s /usr/local/bin/pip3.8 /usr/bin/pip
