@@ -20,7 +20,7 @@ This repository is a template for the final project of big data course in IU-202
 # How to run
 
 1. create a new branch on git
-2. run the python script: scripts\preprocess_data.py from the project director: to download the preprocessed version of the cvs files
+2. run the python script: scripts\preprocess_data.py from the project directory: to download the preprocessed version of the cvs files
 3. The main issue with the \copy command: the one that copies data from the csv files to the database tables is that it takes ABSOLUTE PATH
 AT the moment, I am not sure how to do that (but at the end it is doable under the assumption that everything will be run in sandbox )
 4. change the paths in the last copy command to the absolute paths of the data in your machine 
@@ -33,7 +33,7 @@ Clone repository:
 `git clone git@github.com:ayhem18/UK_accidents.git && cd UK_accidents`  
 Prepare the sandbox and environment:  
 `bash scripts/setup_sandbox.sh`  
-`pip install -r requirements`  
+`pip install -r requirements.txt`  
 Download data:  
 `python scripts/preprocess_data.py`  
 Create database:  
