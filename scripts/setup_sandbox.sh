@@ -1,4 +1,7 @@
-# install Python 3
+## Correct postgres configuration
+sed -i '1s/^/local all all trust\n/' file
+
+## Install Python 3
 sudo yum -y groupinstall "Development Tools"
 sudo yum -y install openssl-devel bzip2-devel libffi-devel xz-devel
 
