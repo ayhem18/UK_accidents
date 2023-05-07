@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Setup sandbox
+echo "Setting up sandbox"
+bash scripts/setup_sandbox.sh
+
+# Download data
+echo "Downloading data"
+bash scripts/download_data.sh
+
 # Pre-processing
 echo "Running pre-processing"
 bash scripts/preprocess.sh

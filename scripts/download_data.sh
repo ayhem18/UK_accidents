@@ -2,7 +2,9 @@
 
 # wget command is taken from here https://chemicloud.com/kb/article/download-google-drive-files-using-wget/
 
-mkdir -p data
+rm -rf data
+mkdir data
+
 FILEID=10cx3efdBpO6vdpv5kLnnJMv4O6OON8OR
 FILENAME='data/accidents.csv'
 

@@ -11,7 +11,6 @@ loc_east int,
 loc_north int,
 lng float,
 lat float,
-police_force smallint,
 accident_severity smallint,
 n_veh smallint,
 n_cas smallint,
@@ -37,7 +36,8 @@ special_conds smallint,
 hazards smallint,
 area_type smallint,
 did_police_officer_attend_scenery smallint,
-lsoa_of_accident_location varchar(150)
+lsoa_of_accident_location varchar(150),
+police_force smallint
 );
 
 
@@ -63,8 +63,8 @@ age_band smallint,
 engine_capacity int,
 propulsion_code smallint,
 age_of_vehicle int,
-driver_imd_decile smallint,
 driver_home_area_type smallint,
+driver_imd_decile smallint,
 unique (accident_index, vehicle_reference),
 PRIMARY KEY (accident_index, vehicle_reference)
 --FOREIGN KEY (accident_index) REFERENCES accident(accident_index)
@@ -80,7 +80,6 @@ cas_ref int,
 cas_class int,
 cas_sex          smallint,
 cas_age          smallint,
-cas_age_band     smallint,
 cas_severity smallint,
 pedestrian_locaction          smallint,
 pedestrian_movement smallint,
@@ -89,6 +88,7 @@ bus_or_coach_passenger smallint,
 pedestrian_road_maintenance smallint,
 cas_type smallint,
 cas_home_area_type smallint,
+cas_age_band     smallint,
 unique (accident_index, vehicle_reference, cas_ref),
 primary key (accident_index, vehicle_reference, cas_ref)
 --FOREIGN KEY (accident_index) REFERENCES accident (accident_index),
