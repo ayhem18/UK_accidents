@@ -1,4 +1,4 @@
-set datestyle = "SQL, DMY";
+--set datestyle = "SQL, DMY";
 
 -- time to create the table
 DROP TABLE IF EXISTS casualty;
@@ -11,14 +11,14 @@ loc_east int,
 loc_north int,
 lng float,
 lat float,
-police_force int,
-accident_severity int,
-n_veh int,
-n_cas int,
-date DATE not null ,
-day_of_week int,
+police_force smallint,
+accident_severity smallint,
+n_veh smallint,
+n_cas smallint,
+date_ varchar(150),
+day_of_week smallint,
 time varchar(150),
-district int ,
+district smallint,
 highway varchar(150),
 road_c1 smallint,
 road_n1 smallint,
@@ -36,7 +36,7 @@ road_surface smallint,
 special_conds smallint,
 hazards smallint,
 area_type smallint,
-did_police_officer_attend_scenery int,
+did_police_officer_attend_scenery smallint,
 lsoa_of_accident_location varchar(150)
 );
 
@@ -44,8 +44,8 @@ lsoa_of_accident_location varchar(150)
 CREATE TABLE IF NOT EXISTS vehicle
 (
 accident_index varchar(150),
-vehicle_reference int,
-veh_type int,
+vehicle_reference smallint,
+veh_type smallint,
 towing smallint,
 vehicle_manoeuvre smallint,
 vehicle_location smallint,
@@ -98,6 +98,7 @@ primary key (accident_index, vehicle_reference, cas_ref)
 
 
 \copy accident FROM '/root/UK_accidents/data/accidents.csv'  DELIMITER ',' CSV HEADER;
+--delete from accident where accident_severity != 1;
 
 \copy vehicle FROM '/root/UK_accidents/data/vehicles.csv' DELIMITER ',' CSV HEADER;
 

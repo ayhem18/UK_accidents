@@ -22,17 +22,17 @@ DROP TABLE IF EXISTS vehicle_part;
 
 create external table accident_part (
 	accident_index varchar(150),
-	loc_east int,
-	loc_north int,
+	loc_east lint,
+	loc_north lint,
 	lng float,
 	lat float,
-	accident_severity int,
-	n_veh int,
-	n_cas int,
+	accident_severity smallint,
+	n_veh smallint,
+	n_cas smallint,
 	date_ varchar(150),
-	day_of_week int,
+	day_of_week smallint,
 	time varchar(150),
-	district int,
+	district smallint,
 	highway varchar(150),
 	road_c1 smallint,
 	road_n1 smallint,
@@ -50,7 +50,7 @@ create external table accident_part (
 	special_conds smallint,
 	hazards smallint,
 	area_type smallint,
-	did_police_officer_attend_scenery int,
+	did_police_officer_attend_scenery smallint,
 	lsoa_of_accident_location varchar(150)
 ) partitioned by (police_force int) stored as avro location '/project/accident_part' tblproperties ('AVRO.COMPRESS'='SNAPPY');
 
