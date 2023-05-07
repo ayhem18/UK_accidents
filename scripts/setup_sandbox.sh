@@ -1,14 +1,14 @@
 ## update packages
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-yum update
+yes | yum update
 
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
 source /root/.bashrc
 
 ## Correct postgres configuration
-sed -i '1s/^/local all all trust\n/' /var/lib/pgsql/9.6/data/pg_hba.conf
-sed -i '1s/^/host all all 0.0.0.0\/0 trust\n/' /var/lib/pgsql/9.6/data/pg_hba.conf
+sed -i '1s/^/local all all trust\n/' /var/lib/pgsql/data/pg_hba.conf
+sed -i '1s/^/host all all 0.0.0.0\/0 trust\n/' /var/lib/pgsql/data/pg_hba.conf
 
 sudo systemctl restart postgresql-9.6
 
@@ -19,7 +19,7 @@ sudo yum -y install openssl-devel bzip2-devel libffi-devel xz-devel
 sudo yum -y install wget
 wget https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tgz -P ~
 tar xvf ~/Python-3.8.16.tgz
-cd ~/Python-3.8*/
+cd ~/Python-3.8.16/
 
 ./configure --enable-optimizations
 sudo make altinstall
