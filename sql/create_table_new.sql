@@ -65,8 +65,9 @@ propulsion_code smallint,
 age_of_vehicle int,
 driver_imd_decile smallint,
 driver_home_area_type smallint,
-PRIMARY KEY (accident_index, vehicle_reference),
-FOREIGN KEY (accident_index) REFERENCES accident(accident_index)
+unique (accident_index, vehicle_reference),
+PRIMARY KEY (accident_index, vehicle_reference)
+--FOREIGN KEY (accident_index) REFERENCES accident(accident_index)
 );
 
 
@@ -88,9 +89,10 @@ bus_or_coach_passenger smallint,
 pedestrian_road_maintenance smallint,
 cas_type smallint,
 cas_home_area_type smallint,
-primary key (accident_index, vehicle_reference, cas_ref),
-FOREIGN KEY (accident_index) REFERENCES accident (accident_index),
-FOREIGN KEY (vehicle_reference) REFERENCES vehicle (vehicle_reference)
+unique (accident_index, vehicle_reference, cas_ref),
+primary key (accident_index, vehicle_reference, cas_ref)
+--FOREIGN KEY (accident_index) REFERENCES accident (accident_index),
+--FOREIGN KEY (vehicle_reference) REFERENCES vehicle (vehicle_reference)
 );
 
 
