@@ -1,26 +1,25 @@
-
 set datestyle = "SQL, DMY";
 
 -- time to create the table
 DROP TABLE IF EXISTS casualty;
-DROP TABLE IF EXISTS  vehicle ;
+DROP TABLE IF EXISTS vehicle;
 DROP TABLE IF EXISTS accident;
 
 CREATE TABLE accident (
-accident_index  varchar PRIMARY KEY,
+accident_index varchar(150) PRIMARY KEY,
 loc_east int,
 loc_north int,
-lng DOUBLE PRECISION , -- can be null for the moment
-lat DOUBLE PRECISION  , -- can be null for the moment
+lng float,
+lat float,
 police_force int,
 accident_severity int,
 n_veh int,
 n_cas int,
 date DATE not null ,
 day_of_week int,
-time varchar,
+time varchar(150),
 district int ,
-highway varchar,
+highway varchar(150),
 road_c1 smallint,
 road_n1 smallint,
 road_type smallint,
@@ -37,14 +36,14 @@ road_surface smallint,
 special_conds smallint,
 hazards smallint,
 area_type smallint,
-did_police_officer_attend_scenery varchar,
-lsoa_of_accident_location varchar
+did_police_officer_attend_scenery int,
+lsoa_of_accident_location varchar(150)
 );
 
 
 CREATE TABLE IF NOT EXISTS vehicle
 (
-accident_index varchar,
+accident_index varchar(150),
 vehicle_reference int,
 veh_type int,
 towing smallint,
@@ -75,7 +74,7 @@ PRIMARY KEY (accident_index, vehicle_reference)
 -- time to create the table for vehicle
 CREATE TABLE IF NOT EXISTS casualty
 (
-accident_index varchar ,
+accident_index varchar(150) ,
 vehicle_reference int,
 cas_ref int,
 cas_class int,
