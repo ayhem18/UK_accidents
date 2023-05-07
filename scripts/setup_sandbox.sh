@@ -28,12 +28,12 @@ cd -
 # Create symlinks for convenience of use
 #yes | rm /usr/bin/python
 ln -s /usr/local/bin/python3.8 /usr/bin/python3
-#mv /usr/bin/pip3 /usr/bin/pip_bak
+mv /usr/bin/pip3 /usr/bin/pip_bak
 ln -s /usr/local/bin/pip3.8 /usr/bin/pip3
 
 # Sqoop
 wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar --no-check-certificate -P ~
 cp /root/postgresql-42.6.0.jar /usr/hdp/current/sqoop-client/lib/
 
-# install python requirements
+# Install Python requirements
 pip3 install -r requirements.txt
