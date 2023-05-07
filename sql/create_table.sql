@@ -1,9 +1,4 @@
 
--- not needed in hadoop
--- SELECT 'CREATE DATABASE bd_project'
--- WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'bd_project')\gexec
-
-
 -- time to create the table
 DROP TABLE IF EXISTS casualty;
 DROP TABLE IF EXISTS  vehicle ;
@@ -72,9 +67,9 @@ FOREIGN KEY (vehicle_reference) REFERENCES vehicle (vehicle_reference)
 
 -- add your local machine part before \UK_accidents_project\data\preprocessed_data\accidents_v1.csv, same for other files
 
-\copy accident FROM 'C:\Users\bouab\DEV\UK_accidents_project\data\preprocessed_data\accidents_v1.csv'  DELIMITER ',' CSV HEADER;
+\copy accident FROM '/root/UK_accidents/data/preprocessed_data/accidents_v1.csv'  DELIMITER ',' CSV HEADER;
 
-\copy vehicle FROM 'C:\Users\bouab\DEV\UK_accidents_project\data\preprocessed_data\vehicles_v1.csv' DELIMITER ',' CSV HEADER;
+\copy vehicle FROM '/root/UK_accidents/data/preprocessed_data/vehicles_v1.csv' DELIMITER ',' CSV HEADER;
 
-\copy casualty FROM 'C:\Users\bouab\DEV\UK_accidents_project\data\preprocessed_data\casualties_v1.csv' DELIMITER ',' CSV HEADER;
+\copy casualty FROM '/root/UK_accidents/data/preprocessed_data/casualties_v1.csv' DELIMITER ',' CSV HEADER;
 
