@@ -4,6 +4,7 @@ yes | yum update
 
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
+echo "export HADOOP_USER_NAME=hdfs" >> /root/.bashrc
 source /root/.bashrc
 
 ## Correct postgres configuration
