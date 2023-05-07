@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS casualty;
 DROP TABLE IF EXISTS  vehicle ;
 DROP TABLE IF EXISTS accident;
 
-CREATE TABLE IF NOT EXISTS accident (
+CREATE TABLE accident (
 accident_index  varchar PRIMARY KEY,
 loc_east int,
 loc_north int,
@@ -37,8 +37,8 @@ road_surface smallint,
 special_conds smallint,
 hazards smallint,
 area_type smallint,
-tmp varchar,
-tmp1 varchar
+did_police_officer_attend_scenery varchar,
+lsoa_of_accident_location varchar
 );
 
 
