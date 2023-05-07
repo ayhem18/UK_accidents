@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS  vehicle ;
 DROP TABLE IF EXISTS accident;
 
 CREATE TABLE IF NOT EXISTS accident (
-accident_index  int PRIMARY KEY,
+accident_index  varchar PRIMARY KEY,
 lng DOUBLE PRECISION , -- can be null for the moment
 lat DOUBLE PRECISION  , -- can be null for the moment
 date DATE not null ,
@@ -25,14 +25,16 @@ weather  smallint,
 road_surface smallint,
 special_conds smallint,
 hazards smallint,
-area_type smallint
+area_type smallint,
+tmp varchar,
+tmp1 varchar
 );
 
 
 CREATE TABLE IF NOT EXISTS vehicle
 (
-accident_index int,
-vehicle_reference int,
+accident_index varchar,
+vehicle_reference varchar,
 veh_type int,
 towing smallint,
 reversed smallint,
@@ -50,8 +52,8 @@ FOREIGN KEY (accident_index) REFERENCES accident(accident_index)
 -- time to create the table for vehicle
 CREATE TABLE IF NOT EXISTS casualty(
 key serial PRIMARY KEY,
-accident_index       int ,
-vehicle_reference          int,
+accident_index       varchar ,
+vehicle_reference          varchar,
 cas_type         smallint,
 cas_sex          smallint,
 cas_age          smallint,
