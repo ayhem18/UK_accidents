@@ -1,6 +1,6 @@
 ## update packages
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-yes | yum update
+yum -y update
 
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
