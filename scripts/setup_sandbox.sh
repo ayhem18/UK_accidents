@@ -4,6 +4,7 @@ yes | yum update
 
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
+## permissions to modify hdfs
 echo "export HADOOP_USER_NAME=hdfs" >> /root/.bashrc
 source /root/.bashrc
 
