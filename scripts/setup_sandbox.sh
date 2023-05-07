@@ -33,3 +33,6 @@ ln -s /usr/local/bin/pip3.8 /usr/bin/pip3
 # Sqoop
 wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar --no-check-certificate -P ~
 cp /root/postgresql-42.6.0.jar /usr/hdp/current/sqoop-client/lib/
+
+# Install Python requirements
+pip3 install -r requirements.txt
