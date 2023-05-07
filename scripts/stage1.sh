@@ -1,7 +1,7 @@
 #!/bin/bash
 
 python3 scripts/preprocess_data.py
-psql -U postgres "create database project;"
+psql -U postgres -c "create database project;"
 psql -U postgres -d project -f sql/create_table.sql
 
 sqoop import-all-tables \

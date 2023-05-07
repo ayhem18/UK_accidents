@@ -106,12 +106,21 @@ ACC['date'] = ACC['date'].apply(uniform_date_format)
 ACC['date'] = pd.to_datetime(ACC['date'], format='%d/%m/%Y')
 
 
+# one final important step to do is to convert the textual indices
+ACC.reset_index(inplace=True)
+# create a map to map each old accident_index to the new index
+old_to_index_map = dict([(old, new) for old, new in zip(ACC['accident_index'].tolist(), ACC['index'].tolist())])
+ACC.drop(columns='accident_index', inplace=True)
+ACC = ACC.rename(columns={"index": "accident_index"})
+
+#ACC.drop(columns=['highway', 'time'], inplace=True)
 
 # save the resulting accidents table
 processed_data_dir = os.path.join(DATA_FOLDER_PATH, 'preprocessed_data')
 os.makedirs(processed_data_dir, exist_ok=True)
 ACC.to_csv(os.path.join(processed_data_dir, 'accidents_v1.csv'), index=False) 
 
+print("DONE WITH ACCIDENTS CSV FILE!!!!")
 
 # preprocess the Vehicles data
 
@@ -128,15 +137,21 @@ NEW_VEH_NAMES = {"accident_index": "acc_index", "vehicle_reference": "veh_ref", 
 
 VE = new_col_names(NEW_VEH_NAMES, VE) 
 
+
+VE['acc_index'] = VE['acc_index'].apply(lambda x: old_to_index_map[x]) 
+assert set(VE['acc_index']).issubset(ACC['accident_index'])
+assert len(VE['acc_index'].value_counts()) == len(ACC)
+
+
 def fix_veh_ref(row):
-    row['veh_ref'] = f"{row['acc_index']}_{row['veh_ref']}"
+    row['veh_ref'] = row['acc_index'] * 91 + row['veh_ref'] 
     return row
 
 VE = VE.apply(fix_veh_ref, axis=1)
 
 VE.to_csv(os.path.join(processed_data_dir, 'vehicles_v1.csv'), index=False)
 
-
+print("DONE WITH VEHICLES CSV!!!")
 
 # proprocess the casualties data
 
@@ -150,6 +165,10 @@ CA_NEW_NAMES = {"accident_index": "acc_index", "vehicle_reference": "veh_ref", '
 
 CA = new_col_names(CA_NEW_NAMES, CA)
 
+CA['acc_index'] = CA['acc_index'].apply(lambda x: old_to_index_map[x]) 
+assert set(CA['acc_index']) == set(ACC['accident_index'])
+assert len(CA['acc_index'].value_counts()) == len(ACC)
+
 # the same modification applied on the vehicle file should be applied to that of casualties
 CA = CA.apply(fix_veh_ref, axis=1)
 # as it does not seem possible to make a primary key for each casualty out of the provided data
@@ -162,3 +181,5 @@ CA.to_csv(os.path.join(processed_data_dir, 'casualties_v1.csv'), index=False)
 assert all(VE['veh_ref'].value_counts() == 1)
 # assert the references in the casualties dataset is a subset of the vehicles dataset: database constraints
 assert set(CA['veh_ref']).issubset(set(VE['veh_ref']))
+
+print("DONE!!!")

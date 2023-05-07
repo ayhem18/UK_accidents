@@ -73,3 +73,8 @@ FOREIGN KEY (vehicle_reference) REFERENCES vehicle (vehicle_reference)
 
 \copy casualty FROM '/root/UK_accidents/data/preprocessed_data/casualties_v1.csv' DELIMITER ',' CSV HEADER;
 
+--\copy accident FROM '/root/UK_accidents/data/accidents.csv'  DELIMITER ',' CSV HEADER;
+
+--\copy vehicle FROM '/root/UK_accidents/data/vehicles.csv' DELIMITER ',' CSV HEADER;
+
+--\copy casualty FROM '/root/UK_accidents/data/casualities.csv' DELIMITER ',' CSV HEADER;
