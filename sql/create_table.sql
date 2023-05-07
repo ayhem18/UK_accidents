@@ -97,18 +97,9 @@ primary key (accident_index, vehicle_reference, cas_ref)
 );
 
 
--- the file path might be problematic depending on the platform: linux or Windows
-
--- add your local machine part before \UK_accidents_project\data\preprocessed_data\accidents_v1.csv, same for other files
-
---\copy accident FROM '/root/UK_accidents/data/preprocessed_data/accidents_v1.csv'  DELIMITER ',' CSV HEADER;
-
---\copy vehicle FROM '/root/UK_accidents/data/preprocessed_data/vehicles_v1.csv' DELIMITER ',' CSV HEADER;
-
---\copy casualty FROM '/root/UK_accidents/data/preprocessed_data/casualties_v1.csv' DELIMITER ',' CSV HEADER;
 
 \copy accident FROM '/root/UK_accidents/data/accidents.csv'  DELIMITER ',' CSV HEADER;
 
 \copy vehicle FROM '/root/UK_accidents/data/vehicles.csv' DELIMITER ',' CSV HEADER;
 
-\copy casualty FROM '/root/UK_accidents/data/casualities.csv' DELIMITER ',' CSV HEADER;
+\copy casualty FROM '/root/UK_accidents/data/casualties.csv' DELIMITER ',' CSV HEADER;

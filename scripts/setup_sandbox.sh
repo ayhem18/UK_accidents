@@ -1,6 +1,6 @@
 ## update packages
 rpm --import https://repo.mysql.com/RPM-GPG-KEY-mysql-2022
-yum update
+yes | yum update
 
 ## vim usage
 echo "export TERM=xterm vim" >> /root/.bashrc
@@ -23,6 +23,7 @@ cd ~/Python-3.8.16/
 
 ./configure --enable-optimizations
 sudo make altinstall
+cd -
 
 # Create symlinks for convenience of use
 #yes | rm /usr/bin/python
