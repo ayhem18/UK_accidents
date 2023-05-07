@@ -74,6 +74,7 @@ def to_columns(df: pd.DataFrame, function):
     return df
 
 
+
 def detect_outliers(df, column):
     # first calculate the percentiles
     Q3, Q1 = np.percentile(df[df[column].notnull()][column], [75 ,25]) # find the quantiles for non-nan values
@@ -81,6 +82,7 @@ def detect_outliers(df, column):
     lower = Q1 - iqr * 1.5
     upper = Q3 + iqr * 1.5
     return lower, upper    
+
 
 
 
