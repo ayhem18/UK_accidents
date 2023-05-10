@@ -2,8 +2,8 @@
 import numpy as np
 from pyspark.sql import SparkSession
 
-import logging
-logging.basicConfig(level="WARNING")
+# import logging
+# logging.basicConfig(level="WARNING")
 
 
 spark = SparkSession.builder\
@@ -13,6 +13,9 @@ spark = SparkSession.builder\
         .config("spark.sql.avro.compression.codec", "snappy")\
         .enableHiveSupport()\
         .getOrCreate()
+
+
+# spark.sparkContext.setLogLevel("WARNING")
 
 merged = spark.read.format("avro").table('projectdb.merged')
 merged.createOrReplaceTempView('merged')
