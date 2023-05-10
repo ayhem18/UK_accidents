@@ -19,7 +19,7 @@ do
   mkdir -p "queries/q$i"
 done
 
-hive -f hql/stage2.hql --database projectdb
+hive -f sql/stage2.hql --database projectdb
 
 # create  csv file 1
 echo "fatal_casualities_number,serious_casualities_number,slight_casualities_number" > output/q1.csv
