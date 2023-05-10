@@ -19,28 +19,42 @@ st.write(fig)
 
 
 ## Second plot
-fig = plt.figure(figsize=(10,5))
-ax = fig.add_subplot(1,1,1)
 
-ax.imshow(qs[1].iloc[:, 1:3])
-# yticks
+def cond_plot(ds, y_names, x_names):
+	fig = plt.figure(figsize=(10,5))
+	ax = fig.add_subplot(1,1,1)
+
+	ax.imshow(ds.iloc[:, 1:])
+	# yticks
+	ax.set_yticks(list(range(ds.shape[0])))
+	ax.set_yticklabels(y_names)
+	# xticks
+	ax.set_xticks(list(range(ds.shape[1] - 1)))
+	ax.set_xticklabels(x_names)
+	ax.set_title("Severity of casualty depending on who is insured")
+	# Put percentage values on the graph
+	print('anew')
+	for y in range(ds.shape[0]):
+	    for x in range(ds.shape[1] - 1):
+		print("shape", ds.shape)
+		print(y, x+1)
+		label = ds.iloc[y, x + 1]
+		label = int(100 * label)
+		ax.text(x, y, label, color='black', ha='center', va='center')
+	st.write(fig)
+
+# ynames
 cas_classes = pd.read_excel("data/Road-Accident-Safety-Data-Guide.xls", sheet_name="Casualty Class")
-cas_classes = cas_classes.iloc[(qs[1].iloc[:, 0]-1).tolist(), 1].astype(str).tolist()
-ax.set_yticks(list(range(3)))
-ax.set_yticklabels(cas_classes)
-# xticks
-ax.set_xticks(list(range(2)))
+ynames = cas_classes.iloc[(qs[1].iloc[:, 0]-1).tolist(), 1].astype(str).tolist()
+
+# xnames
 nice_names = {"possibly_fatal_percent": "Possibly Fatal",
 	      "slight_casualities_percent": "Slight"}
-ax.set_xticklabels(list(map(lambda x: nice_names[x], qs[1].columns[1:])))
-ax.set_title("Severity of casualty depending on who is insured")
-# Put percentage values on the graph
-for y in [0, 1, 2]:
-    for x in [0, 1]:
-        label = qs[1].iloc[y, x + 1]
-	label = int(100 * label)
-        ax.text(x, y, label, color='black', ha='center', va='center')
-st.write(fig)
+xnames = list(map(lambda x: nice_names[x], qs[1].columns[1:]))
+# plot
+cond_plot(qs[1], ynames, xnames)
 
 
 # Third plot
+
+

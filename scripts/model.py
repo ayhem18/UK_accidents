@@ -228,6 +228,9 @@ def kfold_validation(vanilla_model, list_params, train_data, k=3):
     model = vanilla_model
     for params in list_params:
         model = kfold_validation_one_hyper(model, params, train_data, k)
+	# extract the estimator from the resul
+
+	model = model.getEstimator()
     return model
 
 
@@ -259,7 +262,7 @@ def evaluate(model, test_data):
 
 
 
-lr_params = [[lr.regParam, [10 ** i for i in range(-3, 1)]], [lr.elasticNetParam, list(np.linspace(0, 1, 6))]]
+lr_params = [[lr.regParam, [10.0 ** i for i in range(-3, 1)]], [lr.elasticNetParam, list(np.linspace(0, 1, 6))]]
 
 
 rf_params = [[rfc.maxDepth, list(range(4, 8))], [rfc.minInstancesPerNode, [10, 100, 1000]]]
@@ -289,8 +292,9 @@ best_rfc = kfold_validation(rfc, rf_params, train)
 lr_preds, lr_auc, lr_apr = evaluate(best_lr, test)
 rf_preds, rf_auc, rf_apr = evaluate(best_rfc, test)
 
-# print("RANDOM FOREST'S METRICS: AUC " + str(rf_auc)+ " Area Under PR" + str(rf_apr))
+print("RANDOM FOREST'S METRICS: AUC " + str(rf_auc)+ " Area Under PR" + str(rf_apr))
 print("LOGISTIC REGRESSION'S METRICS: AUC " + str(lr_auc) + " Area Under PR" + str(lr_apr))
+
 
 
 
