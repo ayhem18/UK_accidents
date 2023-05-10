@@ -23,7 +23,7 @@ st.write(fig)
 
 ## Second plot
 
-def cond_plot(ds, y_names, x_names, are_percentages=False):
+def cond_plot(ds, y_names, x_names, title, are_percentages=False):
 	fig = plt.figure(figsize=(10,5))
 	ax = fig.add_subplot(1,1,1)
 
@@ -34,7 +34,7 @@ def cond_plot(ds, y_names, x_names, are_percentages=False):
 	# xticks
 	ax.set_xticks(list(range(ds.shape[1] - 1)))
 	ax.set_xticklabels(x_names)
-	ax.set_title("Severity of casualty depending on who is insured")
+	ax.set_title(title)
 	# Put percentage values on the graph
 	for y in range(ds.shape[0]):
 	    for x in range(ds.shape[1] - 1):
@@ -53,19 +53,21 @@ ynames = cas_classes.iloc[(qs[1].iloc[:, 0]-1).tolist(), 1].astype(str).tolist()
 nice_names = {"possibly_fatal_percent": "Possibly Fatal",
 	      "slight_casualities_percent": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[1].columns[1:]))
+title = "Severity of casualty depending on who is insured"
 # plot
-cond_plot(qs[1], ynames, xnames)
+cond_plot(qs[1], ynames, xnames, title)
 
 
 # Third plot
 nice_names = {"severe_casualties_ratio": "Severe",
 	      "slight_casualties_ratio": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
-cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
+title = "Casualty severity by speciality"
+cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True, title)
 
 
 # Forth plot
-cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
+cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True, title)
 
 # Fifth plot
 fig = plt.figure(figsize=(10,5))

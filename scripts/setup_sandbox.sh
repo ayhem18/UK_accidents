@@ -37,7 +37,11 @@ sudo systemctl restart postgresql
 wget https://jdbc.postgresql.org/download/postgresql-42.6.0.jar --no-check-certificate -P ~
 cp /root/postgresql-42.6.0.jar /usr/hdp/current/sqoop-client/lib/
 
+# Install pip
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python get-pip.py
+
 # Install Python requirements
-#pip3 install -r requirements.txt
-pip install streamlit matplotlib xlrd --ignore-installed
+pip install -r requirements.txt --ignore-installed
 sudo yum install tkinter
+

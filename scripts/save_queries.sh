@@ -10,7 +10,10 @@ num_queries=8
 # remove any directory named query and its subdirectories
 rm -rf queries
 
+# remove any csv files in the output directory
+rm -rf output/*.csv
 
+# create a queries folder to save the queries' results
 for i in $(seq 1 $num_queries)
 do
   mkdir -p "queries/q$i"
@@ -50,5 +53,9 @@ cat queries/q7/* >> output/q7.csv
 
 echo "hour,accidents_number,severe_casualties_ratio,severe_casualties_number" > output/q8.csv
 cat queries/q8/* >> output/q8.csv
+
+
+# delete the queries directories as it is no longer needed
+rm -rf queries
 
 
