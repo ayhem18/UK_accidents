@@ -1,6 +1,7 @@
 
 import numpy as np
 from pyspark.sql import SparkSession
+from pyspark.sql.types import  *
 
 # import logging
 # logging.basicConfig(level="WARNING")
@@ -188,6 +189,10 @@ vectorAssembler = VectorAssembler(inputCols = feature_columns,
 train = vectorAssembler.transform(train_data)
 test = vectorAssembler.transform(test_data)
 
+# make sure to cast the label to double
+train = train.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
+test = test.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
+
 
 # out 2 classifiers will be Random Forests and Logistic Regression
 
@@ -204,16 +209,27 @@ from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 
 
-def kfold_validation(vanilla_model, paramsGrid, train_data, k=4):
-    # the cross validation will choose the model achieving the best AUC
+
+def kfold_validation_one_hyper(vanilla_model, params, train_data, k=3):
+    # build the evaluator
+
     evaluator = BinaryClassificationEvaluator(labelCol=LABEL)
-    
+    # build the paramsGrid object
+    p = ParamGridBuilder().addGrid(*params).build()
     crossval = CrossValidator(estimator=vanilla_model,
-                          estimatorParamMaps=paramsGrid,
+                          estimatorParamMaps=p,
                           evaluator=evaluator,
                           numFolds=k)  # use 3+ folds in practice
-    best_model = crossval.fit(train_data)
-    return best_model
+    return crossval.fit(train_data)
+
+
+def kfold_validation(vanilla_model, list_params, train_data, k=3):
+    # iterate through each of the list of params and perform cross validation on that list 
+    model = vanilla_model
+    for params in list_params:
+        model = kfold_validation_one_hyper(model, params, train_data, k)
+    return model
+
 
 
 def evaluate(model, test_data):
@@ -239,7 +255,21 @@ def evaluate(model, test_data):
     return predictions, auc, apr
 
 
-lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [10 ** i for i in range(-3, 1)]).addGrid(lr.elasticNetParam, np.linspace(0, 1, 4)).build()
+
+
+
+
+lr_params = [[lr.regParam, [10 ** i for i in range(-3, 1)]], [lr.elasticNetParam, list(np.linspace(0, 1, 6))]]
+
+
+rf_params = [[rfc.maxDepth, list(range(4, 8))], [rfc.minInstancesPerNode, [10, 100, 1000]]]
+
+
+
+
+#lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [0.01, 0.001]).build()
+
+# lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [10 ** i for i in range(-3, 1)]).addGrid(lr.elasticNetParam, np.linspace(0, 1, 4)).build()
 # rf_params_grid = ParamGridBuilder().addGrid(rfc.numTrees, [10, 20, 30]).addGrid(rfc.maxDepth, list(range(4, 7))).build()
 
 
@@ -247,18 +277,20 @@ lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [10 ** i for i in range
 train = train.cache()
 test = test.cache()
 
-# best_rfc = kfold_validation(rfc, rf_params_grid, train)
+best_lr = kfold_validation(lr, lr_params, train)
+best_rfc = kfold_validation(rfc, rf_params, train) 
 
-best_lr = kfold_validation(lr, lr_params_grid, train)
 
 # lr = lr.fit(train)
 
 # evaluate both models on the test data using the predefined metrics
 # rf_auc, rf_apr = evaluate(best_rfc, test)
-lr_preds, lr_auc, lr_apr = evaluate(best_lr, test)
 
-# print("RANDOM FOREST'S METRICS: AUC " + rf_auc + " Area Under PR" + rf_apr)
-print("LOGISTIC REGRESSION'S METRICS: AUC " + lr_auc + " Area Under PR" + lr_apr)
+lr_preds, lr_auc, lr_apr = evaluate(best_lr, test)
+rf_preds, rf_auc, rf_apr = evaluate(best_rfc, test)
+
+# print("RANDOM FOREST'S METRICS: AUC " + str(rf_auc)+ " Area Under PR" + str(rf_apr))
+print("LOGISTIC REGRESSION'S METRICS: AUC " + str(lr_auc) + " Area Under PR" + str(lr_apr))
 
 
 
