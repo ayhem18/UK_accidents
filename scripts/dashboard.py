@@ -15,7 +15,7 @@ ax.set_xlabel("Casualty type")
 ax.set_ylabel("Percentage")
 ax.yaxis.set_major_formatter(mtick.PercentFormatter())
 
-st.write(fig)
+#st.write(fig)
 
 
 ## Second plot
@@ -51,18 +51,28 @@ nice_names = {"possibly_fatal_percent": "Possibly Fatal",
 	      "slight_casualities_percent": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[1].columns[1:]))
 # plot
-cond_plot(qs[1], ynames, xnames)
+#cond_plot(qs[1], ynames, xnames)
 
 
 # Third plot
 nice_names = {"severe_casualties_ratio": "Severe",
 	      "slight_casualties_ratio": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
-cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
+#cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
 
 
 # Forth plot
-cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
+#cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
 
 # Fifth plot
+fig = plt.figure(figsize=(10,5))
+ax = fig.add_subplot(1,1,1)
+
+ax.plot(qs[4].iloc[:-2, 0], qs[4].iloc[:-2, 1], label="Severe")
+ax.plot(qs[4].iloc[:-2, 0], qs[4].iloc[:-2, 2], label="Slight")
+ax.set_xlabel("Speed Limit")
+ax.set_ylabel("Percentage")
+ax.set_title("Casualty severness depending on speed limit")
+
+st.write(fig)
 
