@@ -39,4 +39,5 @@ cp /root/postgresql-42.6.0.jar /usr/hdp/current/sqoop-client/lib/
 
 # Install Python requirements
 #pip3 install -r requirements.txt
-pip install streamlit --ignore-installed
+pip install streamlit --ignore-installed matplotlib
+sudo yum install tkinter

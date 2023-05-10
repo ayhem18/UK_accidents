@@ -26,7 +26,6 @@ cat queries/q1/* >> output/q1.csv
 echo "casualty_class,possibly_fatal_percent,slight_casualities_percent" > output/q2.csv
 cat queries/q2/* >> output/q2.csv
 
-
 # create csv file 3
 echo "is_special_accident,severe_casualties_ratio,slight_casualties_ratio" > output/q3.csv
 cat queries/q3/* >> output/q3.csv

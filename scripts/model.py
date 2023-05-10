@@ -239,22 +239,25 @@ def evaluate(model, test_data):
     return predictions, auc, apr
 
 
+lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [10 ** i for i in range(-3, 1)]).addGrid(lr.elasticNetParam, np.linspace(0, 1, 4)).build()
+# rf_params_grid = ParamGridBuilder().addGrid(rfc.numTrees, [10, 20, 30]).addGrid(rfc.maxDepth, list(range(4, 7))).build()
 
-lr_params_grid = ParamGridBuilder().addGrid(lr.regParam, [10 ** i for i in range(-3, 1)]).addGrid(lr.elasticNetParam, np.linspace(0, 1, 6)).build()
-rf_params_grid = ParamGridBuilder().addGrid(rfc.numTrees, [10, 20, 30]).addGrid(rfc.maxDepth, list(range(4, 7))).build()
 
+# make sure to cache the train and test dataframes
+train = train.cache()
+test = test.cache()
 
-best_rfc = kfold_validation(rfc, rf_params_grid, train)
+# best_rfc = kfold_validation(rfc, rf_params_grid, train)
 
 best_lr = kfold_validation(lr, lr_params_grid, train)
 
 # lr = lr.fit(train)
 
 # evaluate both models on the test data using the predefined metrics
-rf_auc, rf_apr = evaluate(best_rfc, test)
+# rf_auc, rf_apr = evaluate(best_rfc, test)
 lr_preds, lr_auc, lr_apr = evaluate(best_lr, test)
 
-print("RANDOM FOREST'S METRICS: AUC " + rf_auc + " Area Under PR" + rf_apr)
+# print("RANDOM FOREST'S METRICS: AUC " + rf_auc + " Area Under PR" + rf_apr)
 print("LOGISTIC REGRESSION'S METRICS: AUC " + lr_auc + " Area Under PR" + lr_apr)
 
 
