@@ -92,8 +92,20 @@ ax.bar(["Slight", "Severe"], vals.tolist())
 ax.set_title("Age of casualties depending on severity")
 ax.set_xlabel("Casualty type")
 ax.set_ylabel("Average Age")
-#ax.yaxis.set_major_formatter(mtick.PercentFormatter())
 
 st.write(fig)
 
 
+# Seventh plot
+
+fig = plt.figure(figsize=(10,5))
+ax = fig.add_subplot(1,1,1)
+
+ax.scatter(qs[6].iloc[:, 1], 100 * qs[6].iloc[:, 2])
+ax.set_xlabel("Number of accidents")
+ax.set_ylabel("Percentage of severe")
+ax.set_title("Severeness of accidents in each district")
+ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+
+
+st.write(fig)
