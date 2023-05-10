@@ -45,3 +45,5 @@ python get-pip.py
 pip install -r requirements.txt --ignore-installed
 sudo yum install tkinter
 
+# Install pylint
+sudo yum -y install pylint
