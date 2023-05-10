@@ -2,6 +2,9 @@
 import numpy as np
 from pyspark.sql import SparkSession
 
+import logging
+logging.basicConfig(level="WARNING")
+
 
 spark = SparkSession.builder\
         .appName("BDT Project")\

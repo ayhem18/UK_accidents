@@ -5,7 +5,8 @@
 # python get-pip.py
 # pip install pandas==0.24.2
 
-echo "spark.driver.memory 7g" >> /etc/spark2/conf/spark-defaults.conf
+
+echo "spark.driver.memory 12g" >> /etc/spark2/conf/spark-defaults.conf
 
 cd /root/UK_accidents
 
