@@ -20,7 +20,7 @@ st.write(fig)
 
 ## Second plot
 
-def cond_plot(ds, y_names, x_names):
+def cond_plot(ds, y_names, x_names, are_percentages=False):
 	fig = plt.figure(figsize=(10,5))
 	ax = fig.add_subplot(1,1,1)
 
@@ -39,7 +39,9 @@ def cond_plot(ds, y_names, x_names):
 		print("shape", ds.shape)
 		print(y, x+1)
 		label = ds.iloc[y, x + 1]
-		label = int(100 * label)
+		if not are_percentages:
+			label *= 100
+		label = int(label)
 		ax.text(x, y, label, color='black', ha='center', va='center')
 	st.write(fig)
 
@@ -56,5 +58,8 @@ cond_plot(qs[1], ynames, xnames)
 
 
 # Third plot
-
+nice_names = {"severe_casualties_ratio": "Severe",
+	      "slight_casualties_ratio": "Slight"}
+xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
+cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
 

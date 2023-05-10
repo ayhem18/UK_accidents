@@ -235,9 +235,13 @@ def kfold_validation(vanilla_model, list_params, train_data, k=3):
 
 
 
-def evaluate(model, test_data):
+def evaluate(model, train_data, test_data):
     # first let's predicts
     # model.predictionCol = 'prediction'
+	
+    # fit the model first
+    model = model.fit(train_data)
+
     predictions = model.transform(test_data)
     
     evaluator = BinaryClassificationEvaluator(labelCol=LABEL)
@@ -287,10 +291,10 @@ best_rfc = kfold_validation(rfc, rf_params, train)
 # lr = lr.fit(train)
 
 # evaluate both models on the test data using the predefined metrics
-# rf_auc, rf_apr = evaluate(best_rfc, test)
+# rf_auc, rf_apr = evaluate(best_rfc, train, test)
 
-lr_preds, lr_auc, lr_apr = evaluate(best_lr, test)
-rf_preds, rf_auc, rf_apr = evaluate(best_rfc, test)
+lr_preds, lr_auc, lr_apr = evaluate(best_lr, train, test)
+rf_preds, rf_auc, rf_apr = evaluate(best_rfc, train, test)
 
 print("RANDOM FOREST'S METRICS: AUC " + str(rf_auc)+ " Area Under PR" + str(rf_apr))
 print("LOGISTIC REGRESSION'S METRICS: AUC " + str(lr_auc) + " Area Under PR" + str(lr_apr))
