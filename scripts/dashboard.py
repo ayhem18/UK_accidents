@@ -54,18 +54,18 @@ nice_names = {"possibly_fatal_percent": "Possibly Fatal",
 	      "slight_casualities_percent": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[1].columns[1:]))
 # plot
-#cond_plot(qs[1], ynames, xnames)
+cond_plot(qs[1], ynames, xnames)
 
 
 # Third plot
 nice_names = {"severe_casualties_ratio": "Severe",
 	      "slight_casualties_ratio": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
-#cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
+cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
 
 
 # Forth plot
-#cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
+cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
 
 # Fifth plot
 fig = plt.figure(figsize=(10,5))
