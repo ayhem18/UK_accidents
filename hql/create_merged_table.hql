@@ -1,6 +1,8 @@
 set hive.support.quoted.identifiers=none;
 set hive.cli.print.header=true;
 
+drop table if exists merged;
+
 create table merged 
 as select a.*, v.`(accident_index)?+.+`,  c.`(accident_index|vehicle_reference)?+.+`
 	from accident_part a 
@@ -10,3 +12,9 @@ as select a.*, v.`(accident_index)?+.+`,  c.`(accident_index|vehicle_reference)?
 	join casualty_part c 
 	on a.accident_index = c.accident_index 
 		and v.vehicle_reference = c.vehicle_reference;
+
+select count(*) from merged;
+
+
+
+
