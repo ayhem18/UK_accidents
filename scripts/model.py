@@ -43,6 +43,22 @@ merged.createOrReplaceTempView('merged')
 merged.printSchema()
 
 
+# let's first save the dataset characteristics
+
+before_num_cols = len(merged.columns)
+
+
+
+nans = merged.select([F.count(F.when(F.isnan(c), c)).alias(c) for c in merged.columns])
+
+# nans.show()
+
+nans.toPandas().to_csv("output/nan_values.csv", index=False)
+
+before_num_rows = merged.count()
+
+
+
 # time to get rid of the necessary columns
 
 cols_to_remove = (
@@ -196,6 +212,26 @@ merged = merged.drop(*cols_to_remove)
 merged = merged.dropna()
 
 
+# let's save the new dimensions of the dataset
+
+after_num_cols = len(merged.columns)
+
+after_num_rows = merged.count()
+
+# let's save both statistics in a csv file
+
+
+df_stat = {'initial_num_columns': [before_num_cols], 'final_num_columns': [after_num_cols], 'initial_num_rows': [before_num_rows], 'final_num_rows': [after_num_rows]}
+
+df_stat = pd.DataFrame(data=df_stat)
+
+# save the stats
+
+
+df_stat.to_csv('output/data_stats.csv', index=False)
+
+
+
 # let's descrease the size of the entire dataset to avoid out of memory errors
 print("ORIGINAL SIZE " + str(merged.count()))
 
@@ -234,7 +270,8 @@ test = test.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
 
 
 rfc = RandomForestClassifier(
-    labelCol=LABEL, featuresCol=FEATS, predictionCol=P)
+    labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
+
 lr = LogisticRegression(
     labelCol=LABEL,
     featuresCol=FEATS,
@@ -242,6 +279,8 @@ lr = LogisticRegression(
     regParam=0.3,
     elasticNetParam=0.8,
     predictionCol=P)  # Fit the model
+
+
 # lr = LogisticRegression(labelCol=LABEL, maxIter=100, regParam=1, elasticNetParam=0.5)
 
 
@@ -254,7 +293,7 @@ def kfold_validation_one_hyper(vanilla_model, params, train_data, k=3):
     crossval = CrossValidator(estimator=vanilla_model,
                               estimatorParamMaps=p,
                               evaluator=evaluator,
-                              numFolds=k)  # use 3+ folds in practice
+                              numFolds=k, seed=69)  # use 3+ folds in practice
     return crossval.fit(train_data)
 
 
@@ -331,3 +370,13 @@ print("RANDOM FOREST'S METRICS: AUC " +
       str(rf_auc) + " Area Under PR" + str(rf_apr))
 print("LOGISTIC REGRESSION'S METRICS: AUC " +
       str(lr_auc) + " Area Under PR" + str(lr_apr))
+
+
+# time to save the results
+
+rf_preds.toPandas().to_csv("output/random_forests_predictions.csv")
+lr_preds.toPandas().to_csv("output/logistic_regression_predictions.csv")
+
+
+
+
