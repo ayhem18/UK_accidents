@@ -33,11 +33,8 @@ def cond_plot(ds, y_names, x_names, are_percentages=False):
 	ax.set_xticklabels(x_names)
 	ax.set_title("Severity of casualty depending on who is insured")
 	# Put percentage values on the graph
-	print('anew')
 	for y in range(ds.shape[0]):
 	    for x in range(ds.shape[1] - 1):
-		print("shape", ds.shape)
-		print(y, x+1)
 		label = ds.iloc[y, x + 1]
 		if not are_percentages:
 			label *= 100
@@ -62,4 +59,10 @@ nice_names = {"severe_casualties_ratio": "Severe",
 	      "slight_casualties_ratio": "Slight"}
 xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
 cond_plot(qs[2], ["Non-special", "Special"], xnames, are_percentages=True)
+
+
+# Forth plot
+cond_plot(qs[3], ["Non-special", "Special"], xnames, are_percentages=True)
+
+# Fifth plot
 
