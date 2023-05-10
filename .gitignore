@@ -7,3 +7,4 @@ cache
 *.json
 *.java
 loh
+get-pip.py

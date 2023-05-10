@@ -42,8 +42,5 @@ wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
 python get-pip.py
 
 # Install Python requirements
-pip install -r requirements.txt --ignore-installed
-sudo yum -y install tkinter
-
-# Install pylint
-sudo yum -y install pylint
+#pip install -r requirements.txt --ignore-installed
+#sudo yum -y install tkinter
