@@ -7,7 +7,7 @@ import matplotlib.ticker as mtick
 qs = [pd.read_csv("output/q" + str(i) + ".csv") for i in range(1, 9)]
 
 # First plot
-fig = plt.figure(figsize=(10, 5))
+FIG = plt.figure(figsize=(10, 5))
 ax = fig.add_subplot(1, 1, 1)
 vals = 100 * qs[0].iloc[0, :]
 vals = vals.astype(int)
@@ -24,7 +24,7 @@ st.write(fig)
 # Second plot
 
 def cond_plot(ds, y_names, x_names, title, are_percentages=False):
-    fig = plt.figure(figsize=(10, 5))
+    FIG = plt.figure(figsize=(10, 5))
     ax = fig.add_subplot(1, 1, 1)
 
     ax.imshow(ds.iloc[:, 1:])
@@ -76,7 +76,7 @@ cond_plot(qs[3], ["Non-special", "Special"],
           xnames, title, are_percentages=True)
 
 # Fifth plot
-fig = plt.figure(figsize=(10, 5))
+FIG = plt.figure(figsize=(10, 5))
 ax = fig.add_subplot(1, 1, 1)
 
 ax.plot(qs[4].iloc[:, 0], qs[4].iloc[:, 1], label="Severe")
@@ -91,7 +91,7 @@ st.write(fig)
 
 
 # Sixth plot
-fig = plt.figure(figsize=(10, 5))
+FIG = plt.figure(figsize=(10, 5))
 ax = fig.add_subplot(1, 1, 1)
 vals = qs[5].iloc[:, 1]
 vals = vals.astype(int)
@@ -106,7 +106,7 @@ st.write(fig)
 
 # Seventh plot
 
-fig = plt.figure(figsize=(10, 5))
+FIG = plt.figure(figsize=(10, 5))
 ax = fig.add_subplot(1, 1, 1)
 
 ax.scatter(qs[6].iloc[:, 1], 100 * qs[6].iloc[:, 2])
