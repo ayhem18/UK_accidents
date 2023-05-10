@@ -40,7 +40,7 @@ cat queries/q5/* >> output/q5.csv
 
 # create csv file 6
 echo "casualty_severity,average_age" > output/q6.csv
-cat queries/q6/* >> output/q5.csv
+cat queries/q6/* >> output/q6.csv
 
 
 # create csv file 7

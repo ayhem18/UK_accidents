@@ -9,13 +9,16 @@ qs = [pd.read_csv("output/q" + str(i) + ".csv") for i in range(1, 9)]
 ## First plot
 fig = plt.figure(figsize=(10,5))
 ax = fig.add_subplot(1,1,1)
-ax.bar(qs[0].columns, (100 * qs[0].iloc[0, :]).tolist())
+vals = 100 * qs[0].iloc[0, :]
+vals = vals.astype(int)
+	
+ax.bar(qs[0].columns, vals.tolist())
 ax.set_title("Fraction of casualty seriousness")
 ax.set_xlabel("Casualty type")
 ax.set_ylabel("Percentage")
 ax.yaxis.set_major_formatter(mtick.PercentFormatter())
 
-#st.write(fig)
+st.write(fig)
 
 
 ## Second plot
@@ -68,11 +71,29 @@ xnames = list(map(lambda x: nice_names[x], qs[2].columns[1:]))
 fig = plt.figure(figsize=(10,5))
 ax = fig.add_subplot(1,1,1)
 
-ax.plot(qs[4].iloc[:-2, 0], qs[4].iloc[:-2, 1], label="Severe")
-ax.plot(qs[4].iloc[:-2, 0], qs[4].iloc[:-2, 2], label="Slight")
+ax.plot(qs[4].iloc[:, 0], qs[4].iloc[:, 1], label="Severe")
+#ax.plot(qs[4].iloc[:, 0], qs[4].iloc[:, 2], label="Slight")
 ax.set_xlabel("Speed Limit")
 ax.set_ylabel("Percentage")
 ax.set_title("Casualty severness depending on speed limit")
+ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+ax.legend(loc="best")
 
 st.write(fig)
+
+
+# Sixth plot
+fig = plt.figure(figsize=(10,5))
+ax = fig.add_subplot(1,1,1)
+vals = qs[5].iloc[:, 1]
+vals = vals.astype(int)
+	
+ax.bar(["Slight", "Severe"], vals.tolist())
+ax.set_title("Age of casualties depending on severity")
+ax.set_xlabel("Casualty type")
+ax.set_ylabel("Average Age")
+#ax.yaxis.set_major_formatter(mtick.PercentFormatter())
+
+st.write(fig)
+
 
