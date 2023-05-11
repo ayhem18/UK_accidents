@@ -19,10 +19,10 @@ It consists of the following directories
 4. The 4th stage uses builds on top of the results of previous stages, by displaying a neat Dashboard with streamlit
 
 # How to run
-1. wget https://archive.cloudera.com/hwx-sandbox/hdp/hdp-2.6.5/HDP_2.6.5_deploy-scripts_180624d542a25.zip
-2. unzip HDP_2.6.5_deploy-scripts_180624d542a25.zip
-3. bash docker-deploy-hdp265.sh
-4. Enter the sandbox: ssh -o ServerAliveInterval=60 -p 2222 root@localhost 
+1. `wget https://archive.cloudera.com/hwx-sandbox/hdp/hdp-2.6.5/HDP_2.6.5_deploy-scripts_180624d542a25.zip`
+2. `unzip HDP_2.6.5_deploy-scripts_180624d542a25.zip`
+3. `bash docker-deploy-hdp265.sh`
+4. Enter the sandbox: `ssh -o ServerAliveInterval=60 -p 2222 root@localhost`
 5. Assuming the working directory contains the repository directories, run `main.sh` file: bash main.sh 
 
 # NB
