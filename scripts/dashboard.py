@@ -5,6 +5,7 @@ made in this project.
 
 import streamlit as ST
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
 
@@ -230,7 +231,32 @@ PREDICTIONS_TEXT = """
 	"""
 ST.markdown(body=PREDICTIONS_TEXT)
 
-lr_predictions = pd.read_csv('output/logistic_regression_predictions.csv')
-rf_predictions = pd.read_csv('output/random_forest_predictions.csv')
+LR_PREDICTIONS = pd.read_csv('output/logistic_regression_predictions.csv')
+RF_PREDICTIONS = pd.read_csv('output/random_forests_predictions.csv')
+
+# Take 10 random samples
+indices = np.random.randint(0, a.shape[0], size=(10,))
+
+lr_preds_10 = LR_PREDICTIONS.iloc[indices, -2]\
+	.apply(lambda x: eval(x)[0]).tonumpy().reshape(-1, 1)
+rf_preds_10 = RF_PREDICTIONS.iloc[indices, -2]\
+	.apply(lambda x: eval(x)[0]).tonumpy().reshape(-1, 1)
+real = LR_PREDICTIONS.iloc[indices, -1]\
+	.tonumpy().reshape(-1, 1)
+
+df = np.hstack((lr_preds_10, rf_preds_10, real))
+df = pd.DataFrame(df, columns=['Logistic Regression', 'Random Forest', 'Real'])
+ST.write(df)
 
 
+## Metrics
+METRICS_TEXT = \
+	"## Evaluation.  \n"\
+	+ "Here are the Area Under ROC and Area Under PR metrics "\
+	+ "which we used to evaluate our models. As expected, "\
+	+ "a more complex and expressive model - Random Forest - "\
+	+ "have higher metrics values, i.e. performs better."
+METRICS = pd.read_csv('output/metrics.csv')
+METRICS.columns = [u'Model', u'area_under_curve', u'area_under_pr_curve']
+ST.markdown(body=METRICS_TEXT)
+ST.write(METRICS)

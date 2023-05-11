@@ -11,9 +11,16 @@ from pyspark.sql.types import IntegerType, DoubleType
 from pyspark.sql import SparkSession
 
 
-SPARK = SparkSession.builder .appName("BDT Project") .config(
-    "spark.sql.catalogImplementation","hive").config("hive.metastore.uris","thrift://sandbox-hdp.hortonworks.com:9083")
-    .config("spark.sql.avro.compression.codec","snappy") .enableHiveSupport() .getOrCreate()
+
+SPARK = SparkSession.builder\
+    .appName("BDT Project") .config(
+    "spark.sql.catalogImplementation",
+    "hive") .config(
+        "hive.metastore.uris",
+        "thrift://sandbox-hdp.hortonworks.com:9083")\
+    .config(
+            "spark.sql.avro.compression.codec",
+    "snappy") .enableHiveSupport() .getOrCreate()
 
 
 SPARK.sparkContext.setLogLevel('WARN')
@@ -269,20 +276,18 @@ def evaluate(model, train_data, test_data):
     return predictions, auc, apr
 
 
-lr_params = [[LR.regParam, [
-    10.0 ** i for i in range(-3, 1)]], [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
+LR_PARAMS = [[LR.regParam, [10.0 ** i for i in range(-3, 1)]], [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
 
 
-rf_params = [[RFC.maxDepth, list(range(4, 8))], [
-    RFC.minInstancesPerNode, [10, 100, 1000]]]
+RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 100, 1000]]]
 
 
 # make sure to cache the train and test dataframes
 TRAIN = TRAIN.cache()
 TEST = TEST.cache()
 
-BEST_LR = kfold_validation(LR, lr_params, TRAIN)
-BEST_RFC = kfold_validation(RFC, rf_params, TRAIN)
+BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
+BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
 
 
 # evaluate both models on the test data using the predefined metrics
@@ -290,10 +295,8 @@ BEST_RFC = kfold_validation(RFC, rf_params, TRAIN)
 LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN, TEST)
 RF_PREDS, RF_AUC, RF_APR = evaluate(BEST_RFC, TRAIN, TEST)
 
-print("RANDOM FOREST'S METRICS: AUC " +
-      str(RF_AUC) + " Area Under PR" + str(RF_APR))
-print("LOGISTIC REGRESSION'S METRICS: AUC " +
-      str(LR_AUC) + " Area Under PR" + str(LR_APR))
+print("RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR))
+print("LOGISTIC REGRESSION'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR))
 
 
 # time to save the predictions
@@ -302,13 +305,13 @@ RF_PREDS.toPandas().to_csv("output/random_forests_predictions.csv")
 LR_PREDS.toPandas().to_csv("output/logistic_regression_predictions.csv")
 
 # save the results
-res_dict = {
+RES_DICT = {
     'area_under_curve': [
         LR_AUC, RF_AUC], 'area_under_pr_curve': [
             LR_APR, RF_APR]}
-res = pd.DataFrame(
-    data=res_dict,
+RES = pd.DataFrame(
+    data=RES_DICT,
     index=[
         'logistic_regression',
         'random_forest'])
-res.to_csv('output/metrics.csv', index=True)
+RES.to_csv('output/metrics.csv', index=True)
