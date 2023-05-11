@@ -4,7 +4,6 @@ classification model, and evaluation.
 """
 
 from itertools import chain
-import numpy as np
 import pandas as pd
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
@@ -300,20 +299,21 @@ RFC = RandomForestClassifier(
     labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
 
 
-from pyspark.ml.classification import LinearSVC
+from pyspark.ml.classification import LinearSVC, LogisticRegression
 
 
-LR = LinearSVC(
+LR = LogisticRegression(
     labelCol=LABEL,
     featuresCol=FEATS,
     maxIter=100,
     regParam=0.3,
-    tol=10 ** -6,
+    elasticNetParam=0.8,
     predictionCol=P) 
 
 
-LR_PARAMS = [[LR.regParam, [
-    10.0 ** i for i in range(-3, 1)]], [LR.tol, [10 ** -6, 10 ** -5,]]]
+LR_PARAMS = [[LR.regParam,
+              [10.0 ** i for i in range(-3, 1)]],
+             [LR.elasticNetParam, [0.2, 0.5]]]
 
 
 RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 100, 1000]]]
@@ -369,7 +369,3 @@ RF_CM = RF_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.c
 
 LR_CM.toPandas().to_csv("output/logistic_regression_CM.csv")
 RF_CM.toPandas().to_csv("output/random_forest_CM.csv")
-
-
-
-

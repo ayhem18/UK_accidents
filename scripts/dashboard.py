@@ -154,11 +154,18 @@ NICE_NAMES = {"severe_casualties_ratio": "Severe",
 X_NAMES = [NICE_NAMES[x] for x in QS[2].columns[1:]]
 TITLE = "Casualty severity by speciality"
 
+ST.write("We can see that accidents with special accidents"\
+	 + "circumstances such as the vehicle leaving "\
+	 + "the road, having the car not in its natural "\
+	 + "position / direction are 2 likely to have "\
+	 + "severe casualties. The first visualization "\
+	 + "corresponds to the entire dataset.")
 cond_plot(QS[2], ["Non-special", "Special"],
           X_NAMES, TITLE, are_percentages=True)
 
 
 # Forth plot
+ST.write("We can see that this observation is supported further in the 2nd visualization as it demonstrates the influence of such special circumstances on pedestrians' casualties")
 cond_plot(QS[3], ["Non-special", "Special"],
           X_NAMES, TITLE, are_percentages=True)
 
@@ -265,6 +272,10 @@ METRICS.columns = [u'Model', u'area_under_curve', u'area_under_pr_curve']
 ST.write(METRICS_TEXT)
 ST.write(METRICS)
 
-ST.write("### Confusion Matrix  \n")
-CONF_MATRIX = pd.read_csv("output/confusion_matrix.csv")
+ST.write("### Confusion Matrix. Logistic Regression\n")
+CONF_MATRIX = pd.read_csv("output/logistic_regression_CM.csv")
+cond_plot(CONF_MATRIX, ['TP', 'TN'], ['FP', 'FN'], "Confusion Matrix")
+
+ST.write("### Confusion Matrix. Random Forest\n")
+CONF_MATRIX = pd.read_csv("output/random_forest_CM.csv")
 cond_plot(CONF_MATRIX, ['TP', 'TN'], ['FP', 'FN'], "Confusion Matrix")
