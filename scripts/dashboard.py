@@ -92,7 +92,7 @@ ST.write(FIG)
 
 # Second plot
 
-def cond_plot(dataset, y_names_, x_names_, title_, are_percentages=False):
+def cond_plot(dataset, y_names_, x_names_, title_, x_label=None, y_label=None, are_percentages=False):
     """
     A function to make a conditional plot.
     y-axis is the condition variable.
@@ -113,10 +113,14 @@ def cond_plot(dataset, y_names_, x_names_, title_, are_percentages=False):
     # yticks
     inner_ax.set_yticks(list(range(dataset.shape[0])))
     inner_ax.set_yticklabels(y_names_)
+    if y_label:
+        inner_ax.set_ylabel(y_label)
     # xticks
     inner_ax.set_xticks(list(range(dataset.shape[1] - 1)))
     inner_ax.set_xticklabels(x_names_)
     inner_ax.set_title(title_)
+    if x_label:
+        inner_ax.set_xlabel(x_label)
     # Put percentage values on the graph
     for y_coord in range(dataset.shape[0]):
         for x_coord in range(dataset.shape[1] - 1):
@@ -232,6 +236,19 @@ ST.write("For each district in the country we extracted two values: "\
 	    + "accidents taking place.")
 ST.write(FIG)
 
+# Eight plot
+#ST.write("We can see that the number of accidents correlates negatively (roughly speaking) with the ratio of severe accidents. In other words as hours where cars accidents are more common tend to less serious or fatal accidents. Therefore, the authorities should be more alarmed when accidents are reported in regions where the accidents are less frequent.")
+#FIG = plt.figure(figsize=(10, 5))
+#AX = FIG.add_subplot(1, 1, 1)
+#QS[7].plot(x="hour", y=["accidents_number","severe_casualties_number"], rot=0, kind="bar", ax=AX)
+
+#AX.set_xlabel("Hour")
+#AX.set_ylabel("")
+#AX.set_title("Severeness of accidents in each district")
+#AX.yaxis.set_major_formatter(mtick.PercentFormatter())
+
+#ST.write(FIG)
+
 
 ## Predictions
 PREDICTIONS_TEXT = "## Predictions.  \n We trained two models - "\
@@ -272,10 +289,10 @@ METRICS.columns = [u'Model', u'area_under_curve', u'area_under_pr_curve']
 ST.write(METRICS_TEXT)
 ST.write(METRICS)
 
-#ST.write("### Confusion Matrix. Logistic Regression\n")
-#CONF_MATRIX = pd.read_csv("output/logistic_regression_CM_new.csv")
-#cond_plot(CONF_MATRIX.iloc[:, 1:], ["0", "1"], ['1', '0'], "Confusion Matrix")
+ST.write("### Confusion Matrix. Logistic Regression\n")
+CONF_MATRIX = pd.read_csv("output/logistic_regression_CM_new.csv")
+cond_plot(CONF_MATRIX.iloc[2:, :], ["0", "1"][::-1], ['1', '0'][::-1], "Confusion Matrix", are_percentages=True)
 
-#ST.write("### Confusion Matrix. Random Forest\n")
-#CONF_MATRIX = pd.read_csv("output/random_forest_CM_new.csv")
-#cond_plot(CONF_MATRIX.iloc[:, 1:], ['0', '1'], ['1', '0'], "Confusion Matrix")
+ST.write("### Confusion Matrix. Random Forest\n")
+CONF_MATRIX = pd.read_csv("output/random_forest_CM_new.csv")
+cond_plot(CONF_MATRIX.iloc[2:, :], ['0', '1'][::-1], ['1', '0'][::-1], "Confusion Matrix", are_percentages=True, y_label='Predictions', x_label='Real')

@@ -3,6 +3,7 @@ This module contains implementation of data preparation and cleaning,
 classification model, and evaluation.
 """
 
+import numpy as np
 import pandas as pd
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
@@ -11,7 +12,6 @@ from pyspark.ml.feature import VectorAssembler
 import pyspark.sql.functions as F
 from pyspark.sql.types import IntegerType, DoubleType
 from pyspark.sql import SparkSession
-
 
 
 SPARK = SparkSession.builder\
@@ -205,7 +205,6 @@ DF_STAT = pd.DataFrame(data=DF_STAT)
 # save the stats
 DF_STAT.to_csv('output/data_stats.csv', index=False)
 
-
 # modeling:
 LABEL = 'cas_severity'
 FEATS = 'features'
@@ -220,7 +219,7 @@ VEC = VectorAssembler(inputCols=FEATURE_COLUMNS,
 
 TRAIN = VEC.transform(TRAIN_DATA)
 TEST = VEC.transform(TEST_DATA)
-print("Test show")
+print "Test show"
 TEST.show()
 
 # make sure to cast the label to double
@@ -255,7 +254,7 @@ def kfold_validation(vanilla_model, list_params, train_data, k=3):
     # return vanilla_model.fit(train_data)
     model = vanilla_model
     for params in list_params:
-	print("PARAMS: ", model.extractParamMap())
+        print("PARAMS: ", model.extractParamMap())
         model = kfold_validation_one_hyper(model, params, train_data, k)
         # extract the estimator from the resul
 
@@ -298,8 +297,6 @@ RFC = RandomForestClassifier(
     labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
 
 
-from pyspark.ml.classification import LogisticRegression
-
 
 LR = LogisticRegression(
     labelCol=LABEL,
@@ -307,7 +304,7 @@ LR = LogisticRegression(
     maxIter=100,
     regParam=0.3,
     elasticNetParam=0.8,
-    predictionCol=P) 
+    predictionCol=P)
 
 
 LR_PARAMS = [[LR.regParam,
@@ -331,12 +328,8 @@ RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 1
 TRAIN = TRAIN.cache()
 TEST = TEST.cache()
 
-#TODO
-#BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
-#BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
-BEST_LR = LR
-BEST_RFC = RFC
-
+BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
+BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
 
 # evaluate both models on the test data using the predefined metrics
 LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN, TEST)
@@ -363,50 +356,47 @@ RES = pd.DataFrame(
         'random_forest'])
 RES.to_csv('output/metrics.csv', index=True)
 
-# build the confusion matrices
-#LR_CM = LR_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
-# RF_CM = RF_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
 
-# save the confusion matrices
-
-#LR_CM.toPandas().to_csv("output/logistic_regression_CM.csv")
-#RF_CM.toPandas().to_csv("output/random_forest_CM.csv")
-
+# build confusion matrices
 def perf_measure(y_actual, y_pred):
-    TP = 0
-    FP = 0
-    TN = 0
-    FN = 0
+    """
+    Function that calculates the confusion matrix
+    """
 
-    for i in range(len(y_pred)): 
-        if y_actual[i]==y_pred[i]==1:
-           TP += 1
-        if y_pred[i]==1 and y_actual[i]!=y_pred[i]:
-           FP += 1
-        if y_actual[i]==y_pred[i]==0:
-           TN += 1
-        if y_pred[i]==0 and y_actual[i]!=y_pred[i]:
-           FN += 1
+    t_p = 0
+    f_p = 0
+    t_n = 0
+    f_n = 0
 
-    return(TP, FP, TN, FN)
+    for index, _ in enumerate(y_pred):
+        if y_actual[index] == y_pred[index] == 1:
+            t_p += 1
+        if y_pred[index] == 1 and y_actual[index] != y_pred[index]:
+            f_p += 1
+        if y_actual[index] == y_pred[index] == 0:
+            t_n += 1
+        if y_pred[index] == 0 and y_actual[index] != y_pred[index]:
+            f_n += 1
+
+    return(t_p, f_p, t_n, f_n)
 
 
 # let's extract the y_actual, y_pred
-y_true_LR = [x[LABEL] for x in LR_PREDS.select(LABEL).collect()]
-y_pred_LR = [x[P] for x in LR_PREDS.select(P).collect()]
+Y_TRUE_LR = [x[LABEL] for x in LR_PREDS.select(LABEL).collect()]
+Y_PRED_LR = [x[P] for x in LR_PREDS.select(P).collect()]
 
-v1, v2, v3, v4 = perf_measure(y_true_LR, y_pred_LR)
+V1, V2, V3, V4 = perf_measure(Y_TRUE_LR, Y_PRED_LR)
 
-arr = np.array([[0,0,v2,v3],[0,0,v1,v4]])
-d = pd.DataFrame(data=arr.T)
+ARR = np.array([[0, 0, V2, V3], [0, 0, V1, V4]])
+D = pd.DataFrame(data=ARR.T)
 
-d.to_csv("output/logistic_regression_CM_new.csv")
+D.to_csv("output/logistic_regression_CM_new.csv")
 
-y_pred_RF = [x[LABEL] for x in RF_PREDS.select(LABEL).collect()]
-y_true_RF = [x[P] for x in RF_PREDS.select(P).collect()]
+Y_PRED_RF = [x[LABEL] for x in RF_PREDS.select(LABEL).collect()]
+Y_TRUE_RF = [x[P] for x in RF_PREDS.select(P).collect()]
 
-v1, v2, v3, v4 = perf_measure(y_true_RF, y_pred_RF)
+V1, V2, V3, V4 = perf_measure(Y_TRUE_RF, Y_PRED_RF)
 
-arr = np.array([[0,0,v2,v3],[0,0,v1,v4]])
-d = pd.DataFrame(data=arr.T)
-d.to_csv("output/random_forest_CM_new.csv")
+ARR = np.array([[0, 0, V2, V3], [0, 0, V1, V4]])
+D = pd.DataFrame(data=ARR.T)
+D.to_csv("output/random_forest_CM_new.csv")
