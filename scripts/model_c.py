@@ -222,6 +222,8 @@ VEC = VectorAssembler(inputCols=FEATURE_COLUMNS,
 
 TRAIN = VEC.transform(TRAIN_DATA)
 TEST = VEC.transform(TEST_DATA)
+print("Test show")
+TEST.show()
 
 # make sure to cast the label to double
 TRAIN = TRAIN.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
@@ -252,12 +254,14 @@ def kfold_validation(vanilla_model, list_params, train_data, k=3):
     """
     # iterate through each of the list of params and perform cross validation
     # on that list
+    # return vanilla_model.fit(train_data)
     model = vanilla_model
     for params in list_params:
+	print("PARAMS: ", model.extractParamMap())
         model = kfold_validation_one_hyper(model, params, train_data, k)
         # extract the estimator from the resul
 
-        model = model.bestModel#getEstimator()
+        model = model.getEstimator()
     return model
 
 

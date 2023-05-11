@@ -1,0 +1,1434 @@
+SPARK_MAJOR_VERSION is set to 2, using Spark2
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+:: loading settings :: url = jar:file:/usr/hdp/2.6.5.0-292/spark2/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+org.apache.spark#spark-avro_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
+	confs: [default]
+	found org.apache.spark#spark-avro_2.12;3.0.3 in central
+	found org.spark-project.spark#unused;1.0.0 in central
+:: resolution report :: resolve 236ms :: artifacts dl 4ms
+	:: modules in use:
+	org.apache.spark#spark-avro_2.12;3.0.3 from central in [default]
+	org.spark-project.spark#unused;1.0.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent
+	confs: [default]
+	0 artifacts copied, 2 already retrieved (0kB/5ms)
+23/05/11 05:28:26 INFO SparkContext: Running Spark version 2.3.0.2.6.5.0-292
+23/05/11 05:28:26 INFO SparkContext: Submitted application: BDT Project
+23/05/11 05:28:26 INFO SecurityManager: Changing view acls to: root,hdfs
+23/05/11 05:28:26 INFO SecurityManager: Changing modify acls to: root,hdfs
+23/05/11 05:28:26 INFO SecurityManager: Changing view acls groups to: 
+23/05/11 05:28:26 INFO SecurityManager: Changing modify acls groups to: 
+23/05/11 05:28:26 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root, hdfs); groups with view permissions: Set(); users  with modify permissions: Set(root, hdfs); groups with modify permissions: Set()
+23/05/11 05:28:26 INFO Utils: Successfully started service 'sparkDriver' on port 43041.
+23/05/11 05:28:26 INFO SparkEnv: Registering MapOutputTracker
+23/05/11 05:28:26 INFO SparkEnv: Registering BlockManagerMaster
+23/05/11 05:28:26 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+23/05/11 05:28:26 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+23/05/11 05:28:26 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-68a97d3a-fea7-424f-b080-80e0e5ebcf15
+23/05/11 05:28:26 INFO MemoryStore: MemoryStore started with capacity 25.4 GB
+23/05/11 05:28:26 INFO SparkEnv: Registering OutputCommitCoordinator
+23/05/11 05:28:26 INFO log: Logging initialized @2984ms
+23/05/11 05:28:26 INFO Server: jetty-9.3.z-SNAPSHOT
+23/05/11 05:28:26 INFO Server: Started @3081ms
+23/05/11 05:28:26 INFO AbstractConnector: Started ServerConnector@5e1c808{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+23/05/11 05:28:26 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@7ce9f100{/jobs,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@148c574e{/jobs/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6165a07{/jobs/job,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@150f1b35{/jobs/job/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@63cf08fd{/stages,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@57bdb0e1{/stages/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4ae19e88{/stages/stage,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@6c91b74{/stages/stage/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@401ac0fb{/stages/pool,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3022f2d8{/stages/pool/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@40eef6c6{/storage,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@e325714{/storage/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@18b94331{/storage/rdd,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@3f2ac6cc{/storage/rdd/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@8455f29{/environment,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@14d323c2{/environment/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@46a14aa2{/executors,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@2fd4e81c{/executors/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@d4a56d8{/executors/threadDump,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@ab980{/executors/threadDump/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4c321779{/static,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@27b1514e{/,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@57dc819c{/api,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@79116e92{/jobs/job/kill,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@25883606{/stages/stage/kill,null,AVAILABLE,@Spark}
+23/05/11 05:28:26 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://sandbox-hdp.hortonworks.com:4040
+23/05/11 05:28:27 INFO SparkContext: Added JAR file:///usr/hdp/current/hive-client/lib/hive-metastore-1.2.1000.2.6.5.0-292.jar at spark://sandbox-hdp.hortonworks.com:43041/jars/hive-metastore-1.2.1000.2.6.5.0-292.jar with timestamp 1683782907071
+23/05/11 05:28:27 INFO SparkContext: Added JAR file:///usr/hdp/current/hive-client/lib/hive-exec-1.2.1000.2.6.5.0-292.jar at spark://sandbox-hdp.hortonworks.com:43041/jars/hive-exec-1.2.1000.2.6.5.0-292.jar with timestamp 1683782907072
+23/05/11 05:28:27 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.0.3.jar at spark://sandbox-hdp.hortonworks.com:43041/jars/org.apache.spark_spark-avro_2.12-3.0.3.jar with timestamp 1683782907072
+23/05/11 05:28:27 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar at spark://sandbox-hdp.hortonworks.com:43041/jars/org.spark-project.spark_unused-1.0.0.jar with timestamp 1683782907072
+23/05/11 05:28:27 INFO SparkContext: Added file file:/root/UK_accidents/scripts/model_c.py at file:/root/UK_accidents/scripts/model_c.py with timestamp 1683782907090
+23/05/11 05:28:27 INFO Utils: Copying /root/UK_accidents/scripts/model_c.py to /tmp/spark-1a8d3bfd-ac25-43aa-90a9-b3c350b13c8f/userFiles-1d43388a-8e4f-48c2-99de-49473ca5eeab/model_c.py
+23/05/11 05:28:27 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.0.3.jar at file:///root/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.0.3.jar with timestamp 1683782907098
+23/05/11 05:28:27 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-avro_2.12-3.0.3.jar to /tmp/spark-1a8d3bfd-ac25-43aa-90a9-b3c350b13c8f/userFiles-1d43388a-8e4f-48c2-99de-49473ca5eeab/org.apache.spark_spark-avro_2.12-3.0.3.jar
+23/05/11 05:28:27 INFO SparkContext: Added file file:///root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar at file:///root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar with timestamp 1683782907102
+23/05/11 05:28:27 INFO Utils: Copying /root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar to /tmp/spark-1a8d3bfd-ac25-43aa-90a9-b3c350b13c8f/userFiles-1d43388a-8e4f-48c2-99de-49473ca5eeab/org.spark-project.spark_unused-1.0.0.jar
+23/05/11 05:28:27 INFO Executor: Starting executor ID driver on host localhost
+23/05/11 05:28:27 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 45761.
+23/05/11 05:28:27 INFO NettyBlockTransferService: Server created on sandbox-hdp.hortonworks.com:45761
+23/05/11 05:28:27 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+23/05/11 05:28:27 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, sandbox-hdp.hortonworks.com, 45761, None)
+23/05/11 05:28:27 INFO BlockManagerMasterEndpoint: Registering block manager sandbox-hdp.hortonworks.com:45761 with 25.4 GB RAM, BlockManagerId(driver, sandbox-hdp.hortonworks.com, 45761, None)
+23/05/11 05:28:27 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, sandbox-hdp.hortonworks.com, 45761, None)
+23/05/11 05:28:27 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, sandbox-hdp.hortonworks.com, 45761, None)
+23/05/11 05:28:27 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@4a8b9d84{/metrics/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO EventLoggingListener: Logging events to hdfs:/spark2-history/local-1683782907147
+23/05/11 05:28:28 INFO SharedState: loading hive config file: file:/etc/spark2/2.6.5.0-292/0/hive-site.xml
+23/05/11 05:28:28 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir ('file:/root/UK_accidents/spark-warehouse').
+23/05/11 05:28:28 INFO SharedState: Warehouse path is 'file:/root/UK_accidents/spark-warehouse'.
+23/05/11 05:28:28 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@170cce94{/SQL,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@5b67d54b{/SQL/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@51d11ce7{/SQL/execution,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@70a1a118{/SQL/execution/json,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO ContextHandler: Started o.s.j.s.ServletContextHandler@51360e32{/static/sql,null,AVAILABLE,@Spark}
+23/05/11 05:28:28 INFO StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+23/05/11 05:28:31 WARN Utils: Truncated the string representation of a plan since it was too large. This behavior can be adjusted by setting 'spark.debug.maxToStringFields' in SparkEnv.conf.
+root
+ |-- accident_index: string (nullable = true)
+ |-- loc_east: integer (nullable = true)
+ |-- loc_north: integer (nullable = true)
+ |-- lng: double (nullable = true)
+ |-- lat: double (nullable = true)
+ |-- accident_severity: integer (nullable = true)
+ |-- n_veh: integer (nullable = true)
+ |-- n_cas: integer (nullable = true)
+ |-- date_: string (nullable = true)
+ |-- day_of_week: integer (nullable = true)
+ |-- time: string (nullable = true)
+ |-- district: integer (nullable = true)
+ |-- highway: string (nullable = true)
+ |-- road_c1: integer (nullable = true)
+ |-- road_n1: integer (nullable = true)
+ |-- road_type: integer (nullable = true)
+ |-- speed_limit: integer (nullable = true)
+ |-- junc_detail: integer (nullable = true)
+ |-- junc_control: integer (nullable = true)
+ |-- road_c2: integer (nullable = true)
+ |-- road_n2: integer (nullable = true)
+ |-- cross_control: integer (nullable = true)
+ |-- cross_facilities: integer (nullable = true)
+ |-- light: integer (nullable = true)
+ |-- weather: integer (nullable = true)
+ |-- road_surface: integer (nullable = true)
+ |-- special_conds: integer (nullable = true)
+ |-- hazards: integer (nullable = true)
+ |-- area_type: integer (nullable = true)
+ |-- did_police_officer_attend_scenery: integer (nullable = true)
+ |-- lsoa_of_accident_location: string (nullable = true)
+ |-- police_force: integer (nullable = true)
+ |-- vehicle_reference: integer (nullable = true)
+ |-- veh_type: integer (nullable = true)
+ |-- towing: integer (nullable = true)
+ |-- vehicle_manoeuvre: integer (nullable = true)
+ |-- vehicle_location: integer (nullable = true)
+ |-- junction_location: integer (nullable = true)
+ |-- skidding: integer (nullable = true)
+ |-- hit_object_in: integer (nullable = true)
+ |-- veh_leaving: integer (nullable = true)
+ |-- hit_object_off: integer (nullable = true)
+ |-- first_point_of_impact: integer (nullable = true)
+ |-- was_vehicle_left_hand: integer (nullable = true)
+ |-- journey_purpose: integer (nullable = true)
+ |-- sex_of_driver: integer (nullable = true)
+ |-- age_of_driver: integer (nullable = true)
+ |-- age_band: integer (nullable = true)
+ |-- engine_capacity: integer (nullable = true)
+ |-- propulsion_code: integer (nullable = true)
+ |-- age_of_vehicle: integer (nullable = true)
+ |-- driver_home_area_type: integer (nullable = true)
+ |-- driver_imd_decile: integer (nullable = true)
+ |-- cas_ref: integer (nullable = true)
+ |-- cas_class: integer (nullable = true)
+ |-- cas_sex: integer (nullable = true)
+ |-- cas_age: integer (nullable = true)
+ |-- cas_severity: integer (nullable = true)
+ |-- pedestrian_locaction: integer (nullable = true)
+ |-- pedestrian_movement: integer (nullable = true)
+ |-- car_passenger: integer (nullable = true)
+ |-- bus_or_coach_passenger: integer (nullable = true)
+ |-- pedestrian_road_maintenance: integer (nullable = true)
+ |-- cas_type: integer (nullable = true)
+ |-- cas_home_area_type: integer (nullable = true)
+ |-- cas_age_band: integer (nullable = true)
+
++------------+-------+
+|cas_severity|  count|
++------------+-------+
+|           1| 272454|
+|           0|1944113|
++------------+-------+
+
++-------+--------------+-------------+--------------+-------------+--------+
+|hazards|hit_object_off|hit_object_in|hit_object_off|special_conds|skidding|
++-------+--------------+-------------+--------------+-------------+--------+
+|      0|             0|            0|             0|            0|       0|
+|      0|             1|            0|             1|            0|       0|
+|      0|             1|            0|             1|            0|       0|
+|      0|             1|            0|             1|            0|       0|
+|      0|             0|            0|             0|            0|       0|
+|      0|             0|            0|             0|            0|       0|
+|      0|             0|            0|             0|            0|       0|
+|      0|             0|            0|             0|            0|       0|
+|      0|             0|            0|             0|            0|       1|
+|      0|             0|            0|             0|            0|       0|
++-------+--------------+-------------+--------------+-------------+--------+
+only showing top 10 rows
+
++--------+-------------------------------+
+|district|district_severe_accidents_ratio|
++--------+-------------------------------+
+|     463|            0.18396226415094338|
+|     471|             0.1313150074294205|
+|     496|            0.17246596066565809|
+|     148|             0.0806180204986997|
+|     243|            0.09988304093567252|
+|     392|            0.14418022528160201|
+|     540|             0.0985352862849534|
+|     623|            0.10377358490566038|
+|     516|            0.09830330592968341|
+|      31|            0.10291327157048778|
++--------+-------------------------------+
+only showing top 10 rows
+
++----+---------------------------+
+|time|time_severe_accidents_ratio|
++----+---------------------------+
+|  12|        0.10726223261779907|
+|  22|        0.15304049765139013|
+|   1|          0.191986707450625|
+|  13|        0.10938278114655653|
+|  16|        0.11795575201581554|
+|   6|         0.1570347533632287|
+|   3|         0.2010949549655619|
+|  20|         0.1385450770582129|
+|   5|        0.19042374355109848|
+|  19|         0.1287870945479641|
++----+---------------------------+
+only showing top 10 rows
+
+23/05/11 05:28:53 WARN Column: Constructing trivially true equals predicate, 'time#978 = time#978'. Perhaps you need to use aliases.
+23/05/11 05:28:53 WARN Column: Constructing trivially true equals predicate, 'district#11 = district#11'. Perhaps you need to use aliases.
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 490
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 550
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 477
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 526
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 489
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 483
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 535
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 536
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 505
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 493
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 486
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 542
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 537
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 479
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 562
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 528
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 494
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 514
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 496
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 478
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 485
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 510
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 569
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 507
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 544
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 533
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 504
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 555
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 567
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 540
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 503
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 565
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 543
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 524
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 517
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 516
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 500
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 509
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 502
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 523
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 557
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 553
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 492
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 551
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 522
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 560
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 495
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 558
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 498
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 519
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 480
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 531
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 541
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 520
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 556
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 499
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 511
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 545
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 491
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 527
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 515
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 501
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 513
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 549
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 521
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 566
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 506
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 530
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 561
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 518
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 546
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 497
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 568
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 571
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 529
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 476
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 594
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 588
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 585
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 581
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 484
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 586
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 587
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 563
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 488
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 595
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 596
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 512
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 487
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 548
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 554
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 575
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 525
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 577
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 547
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 552
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 564
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 481
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 583
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 539
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 574
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 579
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 508
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 559
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 482
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 572
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 590
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 570
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 589
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 532
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 534
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 538
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 573
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 613
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 578
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 602
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 593
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 592
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 614
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 601
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 600
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 599
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 597
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 604
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 605
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 607
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 580
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 584
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 598
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 611
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 616
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 610
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 615
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 617
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 618
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 620
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 591
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 609
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 576
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 619
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 635
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 608
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 606
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 603
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 621
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 637
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 612
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 640
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 634
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 628
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 636
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 624
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 623
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 638
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 631
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 633
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 626
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 632
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 630
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 642
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 629
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 627
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 625
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 645
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 639
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 622
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 644
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 646
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 641
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 653
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 649
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 648
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 643
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 650
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 647
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 651
+23/05/11 05:28:58 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 652
++---------------------------+-------------------------------+------------+
+|time_severe_accidents_ratio|district_severe_accidents_ratio|cas_severity|
++---------------------------+-------------------------------+------------+
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           1|
+|        0.10726223261779907|             0.0806180204986997|           0|
+|        0.10726223261779907|             0.0806180204986997|           0|
++---------------------------+-------------------------------+------------+
+only showing top 10 rows
+
+['accident_index', 'accident_severity', 'n_veh', 'n_cas', 'date_', 'day_of_week', 'road_c1', 'road_n1', 'road_type', 'speed_limit', 'road_c2', 'road_n2', 'cross_control', 'light', 'weather', 'road_surface', 'special_conds', 'hazards', 'area_type', 'veh_type', 'towing', 'vehicle_location', 'skidding', 'hit_object_in', 'veh_leaving', 'hit_object_off', 'first_point_of_impact', 'engine_capacity', 'age_of_vehicle', 'cas_class', 'cas_sex', 'cas_age', 'cas_severity', 'pedestrian_locaction', 'pedestrian_movement', 'cas_type', 'cas_age_band', 'time_severe_accidents_ratio', 'district_severe_accidents_ratio', 'special_circumstances']
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 738
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 752
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 755
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 824
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 826
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 762
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 807
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 741
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 822
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 820
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 731
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 735
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 800
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 795
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 750
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 784
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 813
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 786
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 793
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 794
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 734
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 759
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 798
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 783
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 757
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 812
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 748
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 780
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 746
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 805
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 818
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 789
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 754
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 764
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 797
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 791
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 809
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 782
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 823
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 773
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 810
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 790
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 804
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 775
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 808
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 740
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 745
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 732
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 831
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 796
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 819
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 743
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 799
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 758
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 817
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 814
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 767
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 765
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 834
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 787
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 753
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 785
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 768
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 801
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 803
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 763
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 742
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 815
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 747
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 736
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 802
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 827
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 779
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 792
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 761
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 836
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 760
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 756
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 776
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 749
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 788
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 828
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 739
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 825
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 833
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 744
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 845
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 778
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 830
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 770
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 772
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 771
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 832
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 769
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 806
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 777
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 837
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 851
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 766
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 839
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 835
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 774
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 811
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 733
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 847
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 858
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 816
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 857
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 854
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 855
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 821
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 849
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 838
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 864
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 841
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 843
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 848
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 842
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 737
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 751
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 853
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 856
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 852
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 840
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 781
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 846
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 844
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 869
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 861
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 862
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 860
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 850
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 829
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 875
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 859
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 867
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 872
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 863
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 866
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 879
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 865
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 874
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 876
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 882
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 871
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 868
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 878
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 883
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 870
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 884
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 886
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 877
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 890
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 891
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 887
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 885
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 880
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 873
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 893
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 889
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 881
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 892
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 888
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 896
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 895
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 898
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 899
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 903
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 902
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 894
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 904
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 906
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 897
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 905
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 907
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 900
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 901
+23/05/11 05:29:03 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 908
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 939
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 942
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 931
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 937
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 940
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 944
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 936
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 938
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 946
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 951
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 934
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 941
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 932
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 947
+23/05/11 05:29:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 943
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 950
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 935
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 933
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 948
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 945
+23/05/11 05:29:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 949
+Test show
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1272
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1192
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1261
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1211
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1265
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1209
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1250
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1203
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1206
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1228
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1241
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1231
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1232
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1193
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1247
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1213
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1217
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1243
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1190
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1281
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1252
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1251
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1237
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1275
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1224
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1256
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1257
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1234
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1230
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1187
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1210
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1240
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1284
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1229
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1259
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1269
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1286
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1208
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1254
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1260
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1268
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1199
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1276
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1202
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1283
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1292
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1244
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1221
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1245
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1207
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1189
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1200
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1195
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1287
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1204
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1222
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1226
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1239
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1188
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1301
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1291
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1258
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1285
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1233
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1219
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1196
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1293
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1236
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1242
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1212
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1235
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1227
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1278
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1191
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1289
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1218
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1198
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1315
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1314
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1321
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1290
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1310
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1197
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1266
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1323
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1223
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1215
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1186
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1201
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1249
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1288
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1333
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1332
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1194
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1274
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1298
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1220
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1262
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1325
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1330
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1225
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1253
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1304
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1305
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1246
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1296
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1312
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1264
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1307
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1328
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1248
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1255
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1300
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1311
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1303
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1322
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1238
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1345
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1302
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1270
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1316
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1318
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1319
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1273
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1354
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1277
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1326
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1214
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1205
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1267
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1341
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1306
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1336
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1294
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1313
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1309
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1342
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1343
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1338
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1263
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1356
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1216
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1363
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1346
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1282
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1339
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1308
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1344
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1349
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1352
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1347
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1361
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1271
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1355
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1360
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1279
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1329
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1320
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1358
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1350
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1331
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1327
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1317
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1334
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1299
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1340
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1362
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1280
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1335
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1324
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1353
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1357
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1359
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1348
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1297
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1295
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1337
+23/05/11 05:29:14 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1351
++-----+-----------+-------+-------+---------+-----------+-------+-------+-------------+-----+-------+------------+-------------+-------+---------+--------+------+----------------+--------+-------------+-----------+--------------+---------------------+---------------+--------------+---------+-------+-------+------------+--------------------+-------------------+--------+------------+---------------------------+-------------------------------+---------------------+--------------------+
+|n_veh|day_of_week|road_c1|road_n1|road_type|speed_limit|road_c2|road_n2|cross_control|light|weather|road_surface|special_conds|hazards|area_type|veh_type|towing|vehicle_location|skidding|hit_object_in|veh_leaving|hit_object_off|first_point_of_impact|engine_capacity|age_of_vehicle|cas_class|cas_sex|cas_age|cas_severity|pedestrian_locaction|pedestrian_movement|cas_type|cas_age_band|time_severe_accidents_ratio|district_severe_accidents_ratio|special_circumstances|            features|
++-----+-----------+-------+-------+---------+-----------+-------+-------+-------------+-----+-------+------------+-------------+-------+---------+--------+------+----------------+--------+-------------+-----------+--------------+---------------------+---------------+--------------+---------+-------+-------+------------+--------------------+-------------------+--------+------------+---------------------------+-------------------------------+---------------------+--------------------+
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       0|            0|          0|             0|                    4|             -1|            -1|        1|      2|     53|           1|                   0|                  0|       9|           8|        0.11484196997137348|             0.1313150074294205|                    0|(35,[0,1,2,3,4,5,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       0|            0|          0|             0|                    4|             -1|            -1|        2|      1|      2|           0|                   0|                  0|       9|           1|        0.11484196997137348|             0.1313150074294205|                    0|(35,[0,1,2,3,4,5,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       0|            0|          1|             1|                    1|           4000|             9|        1|      2|     33|           0|                   0|                  0|       9|           6|         0.0935919770848422|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|             -1|            -1|        2|      2|     22|           0|                   0|                  0|       9|           5|        0.11484196997137348|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1595|            10|        2|      1|      1|           1|                   0|                  0|       9|           1|        0.11243419529527816|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1595|            10|        2|      2|      4|           0|                   0|                  0|       9|           1|        0.11243419529527816|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1794|            11|        1|      1|     29|           1|                   0|                  0|       9|           6|        0.19042374355109848|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    2|           1840|            14|        1|      1|     21|           0|                   0|                  0|       9|           5|        0.10026889127481069|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           1|            0|      0|        2|       9|     0|               0|       1|            0|          4|             1|                    1|           1119|            10|        2|      1|     21|           0|                   0|                  0|       9|           5|        0.12264294315006839|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           2|            0|      0|        2|       9|     0|               0|       0|            0|          2|             1|                    1|           1596|             9|        1|      2|     21|           0|                   0|                  0|       9|           5|         0.0935919770848422|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           2|            0|      0|        2|       9|     0|               0|       1|            0|          2|             1|                    1|           2793|             9|        1|      1|     39|           1|                   0|                  0|       9|           7|        0.11243419529527816|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           2|            0|      0|        2|       9|     0|               0|       1|            0|          2|             1|                    1|           2793|             9|        2|      1|     18|           0|                   0|                  0|       9|           4|        0.11243419529527816|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           2|            0|      0|        2|       9|     0|               0|       1|            0|          5|             1|                    3|           1598|            13|        1|      2|     21|           0|                   0|                  0|       9|           5|        0.10026889127481069|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      1|           2|            0|      0|        2|      21|     1|               0|       1|            0|          1|             1|                    1|          10518|             2|        1|      1|     58|           0|                   0|                  0|      21|           9|        0.12264294315006839|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    1|      8|           2|            0|      0|        2|       9|     0|               0|       1|            0|          1|             0|                    1|           2298|            10|        2|      2|     39|           0|                   0|                  0|       9|           7|        0.10726223261779907|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    4|      2|           2|            0|      0|        2|       9|     0|               0|       0|            0|          0|             0|                    1|           1581|             9|        2|      1|     29|           0|                   0|                  0|       9|           6|          0.191986707450625|             0.1313150074294205|                    0|(35,[0,1,2,3,4,5,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    6|      1|           1|            0|      1|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1360|            12|        2|      1|     20|           0|                   0|                  0|       9|           4|        0.20339221950761135|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    6|      1|           1|            0|      1|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1360|            12|        2|      1|     33|           0|                   0|                  0|       9|           6|        0.20339221950761135|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    6|      1|           2|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1360|            14|        2|      1|     20|           0|                   0|                  0|       9|           4|         0.1287870945479641|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
+|    1|          1|      1|      4|        3|         70|     -1|      0|            0|    6|      1|           2|            0|      0|        2|       9|     0|               0|       1|            0|          1|             1|                    1|           1360|            14|        2|      2|     20|           0|                   0|                  0|       9|           4|         0.1287870945479641|             0.1313150074294205|                    1|[1.0,1.0,1.0,4.0,...|
++-----+-----------+-------+-------+---------+-----------+-------+-------+-------------+-----+-------+------------+-------------+-------+---------+--------+------+----------------+--------+-------------+-----------+--------------+---------------------+---------------+--------------+---------+-------+-------+------------+--------------------+-------------------+--------+------------+---------------------------+-------------------------------+---------------------+--------------------+
+only showing top 20 rows
+
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1507
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1451
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1530
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1512
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1503
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1480
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1493
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1484
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1468
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1521
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1528
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1478
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1519
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1535
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1482
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1522
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1526
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1485
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1479
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1505
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1501
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1455
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1518
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1496
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1467
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1458
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1444
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1489
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1488
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1476
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1537
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1471
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1464
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1481
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1517
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1504
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1477
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1442
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1470
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1463
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1500
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1460
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1527
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1448
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1498
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1461
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1506
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1502
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1469
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1457
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1475
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1449
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1536
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1472
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1541
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1486
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1508
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1474
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1465
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1523
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1497
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1540
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1509
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1515
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1543
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1483
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1525
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1494
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1534
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1492
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1531
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1490
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1511
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1546
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1547
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1473
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1510
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1544
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1551
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1549
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1454
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1553
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1545
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1450
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1491
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1466
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1556
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1446
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1520
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1550
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1514
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1462
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1529
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1456
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1445
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1563
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1516
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1542
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1566
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1513
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1524
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1487
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1453
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1564
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1569
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1532
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1565
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1447
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1562
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1539
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1499
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1538
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1560
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1452
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1558
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1559
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1561
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1459
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1552
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1443
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1533
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1554
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1568
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1577
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1548
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1578
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1574
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1570
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1576
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1580
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1555
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1581
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1557
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1588
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1579
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1441
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1582
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1567
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1495
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1573
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1587
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1571
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1572
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1585
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1583
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1584
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1593
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1586
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1589
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1575
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1591
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1596
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1595
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1592
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1600
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1590
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1599
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1597
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1594
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1602
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1598
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1601
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1605
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1607
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1609
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1603
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1604
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1606
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1612
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1611
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1608
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1610
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1616
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1617
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1613
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1614
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1615
+23/05/11 05:29:18 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1618
+23/05/11 05:29:19 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1642
+23/05/11 05:29:19 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1647
+23/05/11 05:29:19 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1660
+23/05/11 05:29:19 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1645
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1641
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1657
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1661
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1652
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1649
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1653
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1658
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1659
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1643
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1646
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1644
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1655
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1651
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1654
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1648
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1650
+23/05/11 05:29:20 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 1656
+[Row(cas_severity=0.0, count=1362312), Row(cas_severity=1.0, count=190999)]
+1553311
+{0.0: 0.5701010488052664, 1.0: 4.066280451730114}
+('PARAMS: ', {Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='rawPredictionCol', doc='raw prediction (a.k.a. confidence) column name.'): 'rawPrediction', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='maxIter', doc='max number of iterations (>= 0).'): 100, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='elasticNetParam', doc='the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty.'): 0.8, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='featuresCol', doc='features column name.'): 'features', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='tol', doc='the convergence tolerance for iterative algorithms (>= 0).'): 1e-06, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='weightCol', doc='weight column name. If this is not set or empty, we treat all instance weights as 1.0.'): 'weight', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='fitIntercept', doc='whether to fit an intercept term.'): True, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='labelCol', doc='label column name.'): 'cas_severity', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='threshold', doc='Threshold in binary classification prediction, in range [0, 1]. If threshold and thresholds are both set, they must match.e.g. if threshold is p, then thresholds must be equal to [1-p, p].'): 0.5, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='standardization', doc='whether to standardize the training features before fitting the model.'): True, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='family', doc='The name of family which is a description of the label distribution to be used in the model. Supported options: auto, binomial, multinomial'): 'auto', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='aggregationDepth', doc='suggested depth for treeAggregate (>= 2).'): 2, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='probabilityCol', doc='Column name for predicted class conditional probabilities. Note: Not all models output well-calibrated probability estimates! These probabilities should be treated as confidences, not precise probabilities.'): 'probability', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='regParam', doc='regularization parameter (>= 0).'): 0.3, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='predictionCol', doc='prediction column name.'): 'prediction'})
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2121
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2186
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2125
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2102
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2120
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2098
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2128
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2113
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2178
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2131
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2177
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2117
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2189
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2115
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2106
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2130
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2095
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2181
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2185
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2096
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2175
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2122
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2159
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2124
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2173
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2171
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2105
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2160
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2182
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2123
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2170
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2184
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2180
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2111
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2127
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2174
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2112
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2104
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2148
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2188
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2187
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2183
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2109
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2118
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2165
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2163
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2162
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2161
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2144
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2149
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2191
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2150
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2156
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2107
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2153
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2169
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2134
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2099
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2193
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2133
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2198
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2137
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2142
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2205
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2145
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2146
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2206
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2147
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2100
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2119
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2155
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2114
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2213
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2179
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2221
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2154
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2166
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2224
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2192
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2194
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2227
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2152
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2231
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2172
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2126
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2190
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2222
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2215
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2129
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2103
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2167
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2110
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2108
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2157
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2244
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2237
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2236
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2229
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2223
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2211
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2208
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2195
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2139
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2239
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2141
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2241
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2199
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2247
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2164
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2116
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2136
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2158
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2248
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2250
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2138
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2210
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2258
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2230
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2140
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2262
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2097
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2240
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2196
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2202
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2259
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2235
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2176
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2219
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2101
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2242
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2132
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2218
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2135
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2266
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2151
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2238
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2243
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2220
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2228
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2168
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2233
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2232
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2217
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2256
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2225
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2209
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2212
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2226
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2201
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2143
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2267
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2245
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2252
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2265
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2253
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2263
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2200
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2249
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2214
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2207
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2203
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2268
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2234
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2216
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2246
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2197
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2204
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2251
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2254
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2255
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2264
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2261
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2260
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2257
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2270
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2271
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2272
+23/05/11 05:29:28 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2269
+23/05/11 05:29:29 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2298
+23/05/11 05:29:29 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2313
+23/05/11 05:29:29 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2307
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2314
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2296
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2304
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2305
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2311
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2297
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2306
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2301
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2312
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2309
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2300
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2299
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2303
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2315
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2308
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2302
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2310
+23/05/11 05:29:30 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 2295
+23/05/11 05:29:37 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeSystemBLAS
+23/05/11 05:29:37 WARN BLAS: Failed to load implementation from: com.github.fommil.netlib.NativeRefBLAS
+('PARAMS: ', {Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='rawPredictionCol', doc='raw prediction (a.k.a. confidence) column name.'): 'rawPrediction', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='maxIter', doc='max number of iterations (>= 0).'): 100, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='elasticNetParam', doc='the ElasticNet mixing parameter, in range [0, 1]. For alpha = 0, the penalty is an L2 penalty. For alpha = 1, it is an L1 penalty.'): 0.8, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='featuresCol', doc='features column name.'): 'features', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='tol', doc='the convergence tolerance for iterative algorithms (>= 0).'): 1e-06, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='weightCol', doc='weight column name. If this is not set or empty, we treat all instance weights as 1.0.'): 'weight', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='fitIntercept', doc='whether to fit an intercept term.'): True, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='labelCol', doc='label column name.'): 'cas_severity', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='threshold', doc='Threshold in binary classification prediction, in range [0, 1]. If threshold and thresholds are both set, they must match.e.g. if threshold is p, then thresholds must be equal to [1-p, p].'): 0.5, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='standardization', doc='whether to standardize the training features before fitting the model.'): True, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='family', doc='The name of family which is a description of the label distribution to be used in the model. Supported options: auto, binomial, multinomial'): 'auto', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='aggregationDepth', doc='suggested depth for treeAggregate (>= 2).'): 2, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='probabilityCol', doc='Column name for predicted class conditional probabilities. Note: Not all models output well-calibrated probability estimates! These probabilities should be treated as confidences, not precise probabilities.'): 'probability', Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='regParam', doc='regularization parameter (>= 0).'): 0.3, Param(parent=u'LogisticRegression_42808fbfa90b4c0a70ca', name='predictionCol', doc='prediction column name.'): 'prediction'})
+('PARAMS: ', {Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='rawPredictionCol', doc='raw prediction (a.k.a. confidence) column name.'): 'rawPrediction', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='predictionCol', doc='prediction column name.'): 'prediction', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxMemoryInMB', doc='Maximum memory in MB allocated to histogram aggregation. If too small, then 1 node will be split per iteration, and its aggregates may exceed this size.'): 256, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='numTrees', doc='Number of trees to train (>= 1).'): 20, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='impurity', doc='Criterion used for information gain calculation (case-insensitive). Supported options: entropy, gini'): 'gini', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='minInfoGain', doc='Minimum information gain for a split to be considered at a tree node.'): 0.0, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='minInstancesPerNode', doc='Minimum number of instances each child must have after split. If a split causes the left or right child to have fewer than minInstancesPerNode, the split will be discarded as invalid. Should be >= 1.'): 1, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxBins', doc='Max number of bins for discretizing continuous features.  Must be >=2 and >= number of categories for any categorical feature.'): 32, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxDepth', doc='Maximum depth of the tree. (>= 0) E.g., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.'): 5, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='cacheNodeIds', doc='If false, the algorithm will pass trees to executors to match instances with nodes. If true, the algorithm will cache node IDs for each instance. Caching can speed up training of deeper trees. Users can set how often should the cache be checkpointed or disable it by setting checkpointInterval.'): False, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='featuresCol', doc='features column name.'): 'features', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='checkpointInterval', doc='set checkpoint interval (>= 1) or disable checkpoint (-1). E.g. 10 means that the cache will get checkpointed every 10 iterations. Note: this setting will be ignored if the checkpoint directory is not set in the SparkContext.'): 10, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='subsamplingRate', doc='Fraction of the training data used for learning each decision tree, in range (0, 1].'): 1.0, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='featureSubsetStrategy', doc='The number of features to consider for splits at each tree node. Supported options: auto, all, onethird, sqrt, log2, (0.0-1.0], [1-n].'): 'auto', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='seed', doc='random seed.'): 69, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='labelCol', doc='label column name.'): 'cas_severity', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='probabilityCol', doc='Column name for predicted class conditional probabilities. Note: Not all models output well-calibrated probability estimates! These probabilities should be treated as confidences, not precise probabilities.'): 'probability'})
+('PARAMS: ', {Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='rawPredictionCol', doc='raw prediction (a.k.a. confidence) column name.'): 'rawPrediction', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='predictionCol', doc='prediction column name.'): 'prediction', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxMemoryInMB', doc='Maximum memory in MB allocated to histogram aggregation. If too small, then 1 node will be split per iteration, and its aggregates may exceed this size.'): 256, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='numTrees', doc='Number of trees to train (>= 1).'): 20, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='impurity', doc='Criterion used for information gain calculation (case-insensitive). Supported options: entropy, gini'): 'gini', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='minInfoGain', doc='Minimum information gain for a split to be considered at a tree node.'): 0.0, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='minInstancesPerNode', doc='Minimum number of instances each child must have after split. If a split causes the left or right child to have fewer than minInstancesPerNode, the split will be discarded as invalid. Should be >= 1.'): 1, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxBins', doc='Max number of bins for discretizing continuous features.  Must be >=2 and >= number of categories for any categorical feature.'): 32, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='maxDepth', doc='Maximum depth of the tree. (>= 0) E.g., depth 0 means 1 leaf node; depth 1 means 1 internal node + 2 leaf nodes.'): 5, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='cacheNodeIds', doc='If false, the algorithm will pass trees to executors to match instances with nodes. If true, the algorithm will cache node IDs for each instance. Caching can speed up training of deeper trees. Users can set how often should the cache be checkpointed or disable it by setting checkpointInterval.'): False, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='featuresCol', doc='features column name.'): 'features', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='checkpointInterval', doc='set checkpoint interval (>= 1) or disable checkpoint (-1). E.g. 10 means that the cache will get checkpointed every 10 iterations. Note: this setting will be ignored if the checkpoint directory is not set in the SparkContext.'): 10, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='subsamplingRate', doc='Fraction of the training data used for learning each decision tree, in range (0, 1].'): 1.0, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='featureSubsetStrategy', doc='The number of features to consider for splits at each tree node. Supported options: auto, all, onethird, sqrt, log2, (0.0-1.0], [1-n].'): 'auto', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='seed', doc='random seed.'): 69, Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='labelCol', doc='label column name.'): 'cas_severity', Param(parent=u'RandomForestClassifier_4d4789bdc22880f5a6da', name='probabilityCol', doc='Column name for predicted class conditional probabilities. Note: Not all models output well-calibrated probability estimates! These probabilities should be treated as confidences, not precise probabilities.'): 'probability'})
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582749
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582738
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582728
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582719
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582692
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582715
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582756
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582745
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582754
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582707
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582665
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582722
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582671
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582739
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582716
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582668
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582682
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582672
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582751
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582666
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582662
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582720
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582676
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582708
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582667
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582674
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582687
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582709
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582710
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582732
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582748
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582675
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582664
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582691
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582729
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582690
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582673
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582677
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582669
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582703
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582753
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582699
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582670
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582747
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582706
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582685
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582755
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582679
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582689
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582663
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582730
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582733
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582726
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582678
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582774
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582757
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582701
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582723
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582717
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582778
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582761
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582702
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582735
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582680
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582712
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582721
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582704
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582661
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582731
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582695
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582760
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582742
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582785
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582758
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582762
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582694
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582768
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582788
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582793
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582796
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582795
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582737
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582797
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582806
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582773
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582770
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582807
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582808
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582727
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582809
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582816
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582763
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582769
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582724
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582772
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582828
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582831
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582746
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582714
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582814
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582681
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582825
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582759
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582805
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582764
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582684
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582819
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582697
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582693
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582803
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582794
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582744
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582736
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582766
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582834
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582835
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582765
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582820
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582827
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582837
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582832
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582711
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582830
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582700
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582829
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582821
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582824
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582817
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582815
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582802
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582798
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582800
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582799
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582718
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582783
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582781
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582725
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582741
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582833
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582734
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582743
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582786
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582688
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582777
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582713
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582696
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582767
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582776
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582686
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582683
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582775
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582752
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582750
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582811
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582740
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582771
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582812
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582789
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582784
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582804
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582790
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582792
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582779
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582705
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582780
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582823
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582818
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582801
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582813
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582810
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582782
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582822
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582698
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582787
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582836
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582826
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582791
+23/05/11 05:39:05 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582838
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582878
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582880
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582876
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582861
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582866
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582863
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582864
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582879
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582869
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582877
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582872
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582867
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582871
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582873
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582862
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582874
+23/05/11 05:39:06 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582865
+23/05/11 05:39:07 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582881
+23/05/11 05:39:07 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582868
+23/05/11 05:39:07 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582870
+23/05/11 05:39:07 WARN Executor: Managed memory leak detected; size = 262144 bytes, TID = 582875
+Area under PR = 0.122810800053
+Area under ROC = 0.5
+Area under PR = 0.299405889759
+Area under ROC = 0.745261945394
+RANDOM FOREST'S METRICS: AUC 0.745261945394 Area Under PR 0.299405889759
+LOGISTIC REGRESSION'S METRICS: AUC 0.5 Area Under PR0.122810800053

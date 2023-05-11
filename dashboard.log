@@ -1,0 +1,21 @@
+
+IMPORTANT: This version of Streamlit is the last that one that
+will be supported on this version of Python!!!
+
+Please upgrade to Python 3.5 or higher if you want to use the latest
+Streamlit.
+
+
+  A new version of Streamlit is available.
+
+  See what's new at https://discuss.streamlit.io/c/announcements
+
+  Enter the following command to upgrade:
+  $ pip install streamlit --upgrade
+
+
+  You can now view your Streamlit app in your browser.
+
+  Network URL: http://172.18.0.2:60000
+  External URL: http://185.27.192.84:60000
+
