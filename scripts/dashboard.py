@@ -59,7 +59,7 @@ VEHICLES_TEXT = """
 
 ST.markdown(VEHICLES_TEXT)
 
-ST.markdown("### Target  \n Predict casualty severity")"
+ST.markdown("### Target  \n Predict casualty severity")
 
 ST.write("## EDA")
 
@@ -76,7 +76,7 @@ AX.set_ylabel("Percentage")
 AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 
 ST.write("""
-	First let's see how many 
+	First let's see how many casualties of each types are present in the dataset. There is a serious class imbalance in our problem with slight casualties dominating the data.  \nWe decided to merge 'Fatal' and 'Serious' casualties into a single category and to transform our task into binary classification. $0$ will stand for Slight casualties and $1$ for non-Slight.
 	""")
 ST.write(FIG)
 

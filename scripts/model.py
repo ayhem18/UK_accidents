@@ -372,10 +372,15 @@ print("LOGISTIC REGRESSION'S METRICS: AUC " +
       str(lr_auc) + " Area Under PR" + str(lr_apr))
 
 
-# time to save the results
+# time to save the predictions
 
 rf_preds.toPandas().to_csv("output/random_forests_predictions.csv")
 lr_preds.toPandas().to_csv("output/logistic_regression_predictions.csv")
+
+# save the results
+res_dict = {'area_under_curve': [lr_auc, rf_auc], 'area_under_pr_curve': [lr_apr, rf_apr]}
+res = pd.DataFrame(data=res_dict, index=['logistic_regression', 'random_forest'])
+res.to_csv('output/metrics.csv', index=True)
 
 
 
