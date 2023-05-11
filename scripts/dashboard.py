@@ -3,6 +3,7 @@ This module is a script for generation of the dashboard with all results and obs
 made in this project.
 """
 
+import re
 import streamlit as ST
 import pandas as pd
 import numpy as np
@@ -143,7 +144,7 @@ TITLE = "Severity of casualty depending on who is injured"
 # plot
 
 ST.markdown(body="Pedestrians have a much higher risk of a serious injury " \
-            + "compared to people located in the car")
+            + "compared to people located in the car.")
 cond_plot(QS[1], Y_NAMES, X_NAMES, TITLE)
 
 
@@ -226,7 +227,7 @@ ST.write(FIG)
 
 
 ## Predictions
-PREDICTIONS_TEXT = "We trained two models - "\
+PREDICTIONS_TEXT = "## Predictions.  \n We trained two models - "\
 	+ "Logistic Regression and Random Forest. The table below "\
 	+ "shows the probabilities of class 1 (Non-Slight injury) "\
 	+ "in the opinion of each model along with real "\
@@ -240,11 +241,11 @@ RF_PREDICTIONS = pd.read_csv('output/random_forests_predictions.csv')
 # Take 10 random samples
 INDICES = np.random.randint(0, LR_PREDICTIONS.shape[0], size=(10,))
 
-LR_PREDS_10 = LR_PREDICTIONS.iloc[indices, -2]\
-	.apply(lambda x: eval(x)[1]).to_numpy().reshape(-1, 1)
-RF_PREDS_10 = RF_PREDICTIONS.iloc[indices, -2]\
-	.apply(lambda x: eval(x)[1]).to_numpy().reshape(-1, 1)
-REAL = LR_PREDICTIONS.iloc[INDICES, -1]\
+LR_PREDS_10 = LR_PREDICTIONS.iloc[INDICES, -2]\
+	.apply(lambda x: float(re.findall(r'\d+.\d+', x)[1])).to_numpy().reshape(-1, 1)
+RF_PREDS_10 = RF_PREDICTIONS.iloc[INDICES, -2]\
+	.apply(lambda x: float(re.findall(r'\d+.\d+', x)[1])).to_numpy().reshape(-1, 1)
+REAL = LR_PREDICTIONS.iloc[INDICES, 29]\
 	.to_numpy().reshape(-1, 1)
 
 DF = np.hstack((LR_PREDS_10, RF_PREDS_10, REAL))

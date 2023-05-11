@@ -1,3 +1,4 @@
+from itertools import chain
 import numpy as np
 import pandas as pd
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
@@ -78,7 +79,7 @@ COLS_TO_REMOVE = (
 )
 
 # drop unncessary columns
-MERGED = MERGED.drop(*COLS_tO_REMOVE)
+MERGED = MERGED.drop(*COLS_TO_REMOVE)
 # drop nans
 MERGED = MERGED.dropna()
 
@@ -212,19 +213,8 @@ TEST = VEC.transform(TEST_DATA)
 TRAIN = TRAIN.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
 TEST = TEST.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
 
-# out 2 classifiers will be Random Forests and Logistic Regression
 
-RFC = RandomForestClassifier(
-    labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
-
-LR = LogisticRegression(
-    labelCol=LABEL,
-    featuresCol=FEATS,
-    maxIter=100,
-    regParam=0.3,
-    elasticNetParam=0.8,
-    predictionCol=P)
-
+# our 2 classifier\ will be Random Forests and Logistic Regression
 
 def kfold_validation_one_hyper(vanilla_model, params, train_data, k=3):
     # build the evaluator
@@ -276,23 +266,52 @@ def evaluate(model, train_data, test_data):
     return predictions, auc, apr
 
 
-LR_PARAMS = [[LR.regParam, [10.0 ** i for i in range(-3, 1)]], [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
 
+# out 2 classifiers will be Random Forests and Logistic Regression
+
+RFC = RandomForestClassifier(
+    labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
+
+LR = LogisticRegression(
+    labelCol=LABEL,
+    featuresCol=FEATS,
+    maxIter=100,
+    regParam=0.3,
+    elasticNetParam=0.8,
+    predictionCol=P, 
+    weightCol='weight')  
+
+
+LR_PARAMS = [[LR.regParam, [10.0 ** i for i in range(-3, 1)]], [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
 
 RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 100, 1000]]]
 
+# let's prepare the weights for Logistic Regression
+y_collect = MERGED.select(LABEL).groupBy(LABEL).count().collect()
+print(y_collect)
+unique_y = [x[LABEL] for x in y_collect]
+total_y = sum([x["count"] for x in y_collect])
+print(total_y)
+unique_y_count = len(y_collect)
+bin_count = [x["count"] for x in y_collect]
+class_weights_spark = {i: ii for i, ii in zip(unique_y, float(total_y) / (unique_y_count * np.array(bin_count)))}
+print(class_weights_spark) 
+
+mapping_expr = F.create_map([F.lit(x) for x in chain(*class_weights_spark.items())])
+
+TRAIN_LR = TRAIN.withColumn("weight", mapping_expr.getItem(F.col(LABEL)))
 
 # make sure to cache the train and test dataframes
-TRAIN = TRAIN.cache()
+TRAIN  = TRAIN.cache()
 TEST = TEST.cache()
+TRAIN_LR = TRAIN_LR.cache()
 
-BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
+BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN_LR)
 BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
 
 
 # evaluate both models on the test data using the predefined metrics
-
-LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN, TEST)
+LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN_LR, TEST)
 RF_PREDS, RF_AUC, RF_APR = evaluate(BEST_RFC, TRAIN, TEST)
 
 print("RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR))
