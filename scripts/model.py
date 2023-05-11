@@ -3,7 +3,6 @@ This module contains implementation of data preparation and cleaning,
 classification model, and evaluation.
 """
 
-from itertools import chain
 import pandas as pd
 from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
@@ -299,7 +298,7 @@ RFC = RandomForestClassifier(
     labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
 
 
-from pyspark.ml.classification import LinearSVC, LogisticRegression
+from pyspark.ml.classification import LogisticRegression
 
 
 LR = LogisticRegression(
@@ -332,8 +331,11 @@ RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 1
 TRAIN = TRAIN.cache()
 TEST = TEST.cache()
 
-BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
-BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
+#TODO
+#BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
+#BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
+BEST_LR = LR
+BEST_RFC = RFC
 
 
 # evaluate both models on the test data using the predefined metrics
@@ -341,7 +343,7 @@ LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN, TEST)
 RF_PREDS, RF_AUC, RF_APR = evaluate(BEST_RFC, TRAIN, TEST)
 
 print "RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR)
-print "SVM'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR)
+print "LINEAR REGRESSION'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR)
 
 
 # time to save the predictions
@@ -362,10 +364,49 @@ RES = pd.DataFrame(
 RES.to_csv('output/metrics.csv', index=True)
 
 # build the confusion matrices
-LR_CM = LR_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
-RF_CM = RF_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
+#LR_CM = LR_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
+# RF_CM = RF_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
 
 # save the confusion matrices
 
-LR_CM.toPandas().to_csv("output/logistic_regression_CM.csv")
-RF_CM.toPandas().to_csv("output/random_forest_CM.csv")
+#LR_CM.toPandas().to_csv("output/logistic_regression_CM.csv")
+#RF_CM.toPandas().to_csv("output/random_forest_CM.csv")
+
+def perf_measure(y_actual, y_pred):
+    TP = 0
+    FP = 0
+    TN = 0
+    FN = 0
+
+    for i in range(len(y_pred)): 
+        if y_actual[i]==y_pred[i]==1:
+           TP += 1
+        if y_pred[i]==1 and y_actual[i]!=y_pred[i]:
+           FP += 1
+        if y_actual[i]==y_pred[i]==0:
+           TN += 1
+        if y_pred[i]==0 and y_actual[i]!=y_pred[i]:
+           FN += 1
+
+    return(TP, FP, TN, FN)
+
+
+# let's extract the y_actual, y_pred
+y_true_LR = [x[LABEL] for x in LR_PREDS.select(LABEL).collect()]
+y_pred_LR = [x[P] for x in LR_PREDS.select(P).collect()]
+
+v1, v2, v3, v4 = perf_measure(y_true_LR, y_pred_LR)
+
+arr = np.array([[0,0,v2,v3],[0,0,v1,v4]])
+d = pd.DataFrame(data=arr.T)
+
+d.to_csv("output/logistic_regression_CM_new.csv")
+
+y_pred_RF = [x[LABEL] for x in RF_PREDS.select(LABEL).collect()]
+y_true_RF = [x[P] for x in RF_PREDS.select(P).collect()]
+
+v1, v2, v3, v4 = perf_measure(y_true_RF, y_pred_RF)
+
+arr = np.array([[0,0,v2,v3],[0,0,v1,v4]])
+d = pd.DataFrame(data=arr.T)
+d.to_csv("output/random_forest_CM_new.csv")

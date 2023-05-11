@@ -272,10 +272,10 @@ METRICS.columns = [u'Model', u'area_under_curve', u'area_under_pr_curve']
 ST.write(METRICS_TEXT)
 ST.write(METRICS)
 
-ST.write("### Confusion Matrix. Logistic Regression\n")
-CONF_MATRIX = pd.read_csv("output/logistic_regression_CM.csv")
-cond_plot(CONF_MATRIX, ['TP', 'TN'], ['FP', 'FN'], "Confusion Matrix")
+#ST.write("### Confusion Matrix. Logistic Regression\n")
+#CONF_MATRIX = pd.read_csv("output/logistic_regression_CM_new.csv")
+#cond_plot(CONF_MATRIX.iloc[:, 1:], ["0", "1"], ['1', '0'], "Confusion Matrix")
 
-ST.write("### Confusion Matrix. Random Forest\n")
-CONF_MATRIX = pd.read_csv("output/random_forest_CM.csv")
-cond_plot(CONF_MATRIX, ['TP', 'TN'], ['FP', 'FN'], "Confusion Matrix")
+#ST.write("### Confusion Matrix. Random Forest\n")
+#CONF_MATRIX = pd.read_csv("output/random_forest_CM_new.csv")
+#cond_plot(CONF_MATRIX.iloc[:, 1:], ['0', '1'], ['1', '0'], "Confusion Matrix")
