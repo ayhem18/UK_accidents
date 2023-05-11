@@ -226,27 +226,30 @@ ST.write(FIG)
 
 
 ## Predictions
-PREDICTIONS_TEXT = """
-	We trained two models - Logistic Regression and Random Forest.
-	"""
+PREDICTIONS_TEXT = "We trained two models - "\
+	+ "Logistic Regression and Random Forest. The table below "\
+	+ "shows the probabilities of class 1 (Non-Slight injury) "\
+	+ "in the opinion of each model along with real "\
+	+ "values of the samples. We took 10 random samples "\
+	+ "for illustrative purposes."
 ST.markdown(body=PREDICTIONS_TEXT)
 
 LR_PREDICTIONS = pd.read_csv('output/logistic_regression_predictions.csv')
 RF_PREDICTIONS = pd.read_csv('output/random_forests_predictions.csv')
 
 # Take 10 random samples
-indices = np.random.randint(0, a.shape[0], size=(10,))
+INDICES = np.random.randint(0, LR_PREDICTIONS.shape[0], size=(10,))
 
-lr_preds_10 = LR_PREDICTIONS.iloc[indices, -2]\
-	.apply(lambda x: eval(x)[0]).tonumpy().reshape(-1, 1)
-rf_preds_10 = RF_PREDICTIONS.iloc[indices, -2]\
-	.apply(lambda x: eval(x)[0]).tonumpy().reshape(-1, 1)
-real = LR_PREDICTIONS.iloc[indices, -1]\
-	.tonumpy().reshape(-1, 1)
+LR_PREDS_10 = LR_PREDICTIONS.iloc[indices, -2]\
+	.apply(lambda x: eval(x)[1]).to_numpy().reshape(-1, 1)
+RF_PREDS_10 = RF_PREDICTIONS.iloc[indices, -2]\
+	.apply(lambda x: eval(x)[1]).to_numpy().reshape(-1, 1)
+REAL = LR_PREDICTIONS.iloc[INDICES, -1]\
+	.to_numpy().reshape(-1, 1)
 
-df = np.hstack((lr_preds_10, rf_preds_10, real))
-df = pd.DataFrame(df, columns=['Logistic Regression', 'Random Forest', 'Real'])
-ST.write(df)
+DF = np.hstack((LR_PREDS_10, RF_PREDS_10, REAL))
+DF = pd.DataFrame(DF, columns=['Logistic Regression', 'Random Forest', 'Real'])
+ST.write(DF)
 
 
 ## Metrics
