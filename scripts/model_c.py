@@ -1,3 +1,8 @@
+"""
+This module contains implementation of data preparation and cleaning,
+classification model, and evaluation.
+"""
+
 from itertools import chain
 import numpy as np
 import pandas as pd
@@ -5,8 +10,6 @@ from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml.classification import RandomForestClassifier, LogisticRegression  # for models
 from pyspark.ml.feature import VectorAssembler
-from pyspark.sql.types import StringType
-from pyspark.sql import DataFrame
 import pyspark.sql.functions as F
 from pyspark.sql.types import IntegerType, DoubleType
 from pyspark.sql import SparkSession
@@ -14,14 +17,13 @@ from pyspark.sql import SparkSession
 
 
 SPARK = SparkSession.builder\
-    .appName("BDT Project") .config(
-    "spark.sql.catalogImplementation",
-    "hive") .config(
+    .appName("BDT Project")\
+    .config("spark.sql.catalogImplementation", "hive")\
+    .config(
         "hive.metastore.uris",
         "thrift://sandbox-hdp.hortonworks.com:9083")\
-    .config(
-            "spark.sql.avro.compression.codec",
-    "snappy") .enableHiveSupport() .getOrCreate()
+    .config("spark.sql.avro.compression.codec", "snappy")\
+    .enableHiveSupport().getOrCreate()
 
 
 SPARK.sparkContext.setLogLevel('WARN')
@@ -36,7 +38,7 @@ MERGED.printSchema()
 BEFORE_NUM_COLS = len(MERGED.columns)
 
 NANS = MERGED.select([F.count(F.when(F.isnan(c), c)).alias(c)
-                     for c in MERGED.columns])
+                      for c in MERGED.columns])
 
 NANS.toPandas().to_csv("output/nan_values.csv", index=False)
 
@@ -86,9 +88,9 @@ MERGED = MERGED.dropna()
 # binarizing the target variable
 
 
-def binarize_target_variable(x):
+def binarize_target_variable(input_x):
     """function to binarize the target variable"""
-    return int(x in [1, 2])
+    return int(input_x in [1, 2])
 
 
 # create a udf out of the binarize_target_variable
@@ -99,9 +101,9 @@ MERGED = MERGED.withColumn('cas_severity', BINARIZE_TARGET_UDF(F.col('cas_severi
 MERGED.groupBy('cas_severity').count().show()
 
 # binarize a number of other features
-def special_conditions_features(x):
+def special_conditions_features(input_x):
     """ function to convert the special_condition features to binary features"""
-    return int(x not in [-1, 0])
+    return int(input_x not in [-1, 0])
 
 
 SPECIAL_FEATURES = [
@@ -121,9 +123,9 @@ for sf in SPECIAL_FEATURES:
 MERGED.select(*SPECIAL_FEATURES).show(10)
 
 # convert the time and date
-def convert_time(x):
-    """ extract the hour part of the time given as String object"""	
-    return int(x[:2])
+def convert_time(input_x):
+    """ extract the hour part of the time given as String object"""
+    return int(input_x[:2])
 
 
 CONVERT_TIME_UDF = F.udf(convert_time, IntegerType())
@@ -134,11 +136,15 @@ MERGED = MERGED.withColumn('time', CONVERT_TIME_UDF(F.col('time')))
 S = 'severe_accidents_ratio'
 
 
-DISTRCIT_DIS = MERGED.groupBy('district').agg(F.avg('cas_severity').alias('district_' + S)).select('district', 'district_' + S)
+DISTRCIT_DIS = MERGED.groupBy('district')\
+	.agg(F.avg('cas_severity').alias('district_' + S))\
+	.select('district', 'district_' + S)
 DISTRCIT_DIS.show(10)
 
 
-TIME_DIS = MERGED.groupBy('time').agg(F.avg('cas_severity').alias('time_' + S)).select('time', 'time_' + S)
+TIME_DIS = MERGED.groupBy('time')\
+	.agg(F.avg('cas_severity').alias('time_' + S))\
+	.select('time', 'time_' + S)
 TIME_DIS.show(10)
 
 # let's convert the district and the time
@@ -152,17 +158,25 @@ MERGED.select('time_' + S, 'district_' + S, 'cas_severity').show(10)
 
 
 def combine_special_features(obj_in, obj_out, veh_left, special_cond, hazards):
+    """
+    This function returns a boolean value indicating that any of argument columns are equal to 1.
+    """
     return int(obj_in == 1 or obj_out == 1 or veh_left == 1 or special_cond == 1 or hazards == 1)
 
 
 COMBINE_UDF = F.udf(combine_special_features, IntegerType())
 
 # let's do that
-merged = MERGED.withColumn('special_circumstances', COMBINE_UDF(MERGED.hit_object_in, MERGED.hit_object_off, MERGED.veh_leaving, MERGED.special_conds, MERGED.hazards))
+MERGED = MERGED.withColumn('special_circumstances',
+                           COMBINE_UDF(MERGED.hit_object_in,
+                                       MERGED.hit_object_off,
+                                       MERGED.veh_leaving,
+                                       MERGED.special_conds,
+                                       MERGED.hazards))
 MERGED.drop(*SPECIAL_FEATURES[:-1])
 
 # next step: decide which columns to drop
-print(MERGED.columns)
+print MERGED.columns
 
 # get rid of some features
 COLS_TO_REMOVE = ['accident_index', 'accident_severity', 'n_cas', 'date_']
@@ -182,13 +196,13 @@ AFTER_NUM_ROWS = MERGED.count()
 # let's save both statistics in a csv file
 
 
-df_stat = {
+DF_STAT = {
     'initial_num_columns': [BEFORE_NUM_COLS],
     'final_num_columns': [AFTER_NUM_COLS],
     'initial_num_rows': [BEFORE_NUM_ROWS],
     'final_num_rows': [AFTER_NUM_ROWS]}
 
-DF_STAT = pd.DataFrame(data=df_stat)
+DF_STAT = pd.DataFrame(data=DF_STAT)
 
 # save the stats
 DF_STAT.to_csv('output/data_stats.csv', index=False)
@@ -217,19 +231,25 @@ TEST = TEST.withColumn(LABEL, F.col(LABEL).cast(DoubleType()))
 # our 2 classifier\ will be Random Forests and Logistic Regression
 
 def kfold_validation_one_hyper(vanilla_model, params, train_data, k=3):
+    """
+    Function that returns single-hyperparameter tuner.
+    """
     # build the evaluator
 
     evaluator = BinaryClassificationEvaluator(labelCol=LABEL)
     # build the paramsGrid object
-    p = ParamGridBuilder().addGrid(*params).build()
+    param_grid = ParamGridBuilder().addGrid(*params).build()
     crossval = CrossValidator(estimator=vanilla_model,
-                              estimatorParamMaps=p,
+                              estimatorParamMaps=param_grid,
                               evaluator=evaluator,
                               numFolds=k, seed=69)  # use 3+ folds in practice
     return crossval.fit(train_data)
 
 
 def kfold_validation(vanilla_model, list_params, train_data, k=3):
+    """
+    Function that performs cross validation of a model.
+    """
     # iterate through each of the list of params and perform cross validation
     # on that list
     model = vanilla_model
@@ -237,11 +257,14 @@ def kfold_validation(vanilla_model, list_params, train_data, k=3):
         model = kfold_validation_one_hyper(model, params, train_data, k)
         # extract the estimator from the resul
 
-        model = model.getEstimator()
+        model = model.bestModel#getEstimator()
     return model
 
 
 def evaluate(model, train_data, test_data):
+    """
+    Function that performs evaluation of the model.
+    """
 
     # fit the model first
     model = model.fit(train_data)
@@ -258,10 +281,10 @@ def evaluate(model, train_data, test_data):
     apr = evaluator.evaluate(predictions)
 
     # Area under precision-recall curve
-    print("Area under PR = %s" % apr)
+    print "Area under PR = %s" % apr
 
     # Area under ROC curve
-    print("Area under ROC = %s" % auc)
+    print "Area under ROC = %s" % auc
 
     return predictions, auc, apr
 
@@ -278,31 +301,35 @@ LR = LogisticRegression(
     maxIter=100,
     regParam=0.3,
     elasticNetParam=0.8,
-    predictionCol=P, 
-    weightCol='weight')  
+    predictionCol=P,
+    weightCol='weight')
 
 
-LR_PARAMS = [[LR.regParam, [10.0 ** i for i in range(-3, 1)]], [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
+LR_PARAMS = [[LR.regParam,
+              [10.0 ** i for i in range(-3, 1)]],
+             [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
 
-RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 100, 1000]]]
+RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))],
+             [RFC.minInstancesPerNode, [10, 100, 1000]]]
 
 # let's prepare the weights for Logistic Regression
-y_collect = MERGED.select(LABEL).groupBy(LABEL).count().collect()
-print(y_collect)
-unique_y = [x[LABEL] for x in y_collect]
-total_y = sum([x["count"] for x in y_collect])
-print(total_y)
-unique_y_count = len(y_collect)
-bin_count = [x["count"] for x in y_collect]
-class_weights_spark = {i: ii for i, ii in zip(unique_y, float(total_y) / (unique_y_count * np.array(bin_count)))}
-print(class_weights_spark) 
+Y_COLLECT = TRAIN.select(LABEL).groupBy(LABEL).count().collect()
+print Y_COLLECT
+UNIQUE_Y = [x[LABEL] for x in Y_COLLECT]
+TOTAL_Y = sum([x["count"] for x in Y_COLLECT])
+print TOTAL_Y
+UNIQUE_Y_COUNT = len(Y_COLLECT)
+BIN_COUNT = [x["count"] for x in Y_COLLECT]
+WEIGHTS = float(TOTAL_Y) / (UNIQUE_Y_COUNT * np.array(BIN_COUNT))
+CLASS_WEIGHTS_SPARK = {i: ii for i, ii in zip(UNIQUE_Y, WEIGHTS)}
+print CLASS_WEIGHTS_SPARK
 
-mapping_expr = F.create_map([F.lit(x) for x in chain(*class_weights_spark.items())])
+MAPPING_EXPR = F.create_map([F.lit(x) for x in chain(*CLASS_WEIGHTS_SPARK.items())])
 
-TRAIN_LR = TRAIN.withColumn("weight", mapping_expr.getItem(F.col(LABEL)))
+TRAIN_LR = TRAIN.withColumn("weight", MAPPING_EXPR.getItem(F.col(LABEL)))
 
 # make sure to cache the train and test dataframes
-TRAIN  = TRAIN.cache()
+TRAIN = TRAIN.cache()
 TEST = TEST.cache()
 TRAIN_LR = TRAIN_LR.cache()
 
@@ -314,8 +341,8 @@ BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
 LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN_LR, TEST)
 RF_PREDS, RF_AUC, RF_APR = evaluate(BEST_RFC, TRAIN, TEST)
 
-print("RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR))
-print("LOGISTIC REGRESSION'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR))
+print "RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR)
+print "LOGISTIC REGRESSION'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR)
 
 
 # time to save the predictions
