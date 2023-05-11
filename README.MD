@@ -1,19 +1,30 @@
-This repository is a template for the final project of big data course in IU-2023. It contains the following directories:
+# Overview
+This repository is our final project for the BIG DATA course offered in Innopolis University Spring 2023: UK_accidents. Our main goal is to build a Big Data pipeline starting from extracting the data,
+saving it, analyzing it and then introducing Predective analysis. As the repository's name suggests, we are digging deeper into accidents taking place in the United Kingdom
+# Repository Structure
+It consists of the following directories
+1. `data/` where the data is saved.
+2. `models/` to save the weights and parameters of Pyspark Models
+3. `notebooks/` Jupyter notebook for discovering and experimenting with the data.
+4. `output/` saves the intermediate and final outputs of the pipeline: Hive Queries as insights, predictions, metrics...
+5. `scripts/` the main power engine in the repo: where the driver bash and python code is written
+6. `sql/` to save hql and sql scripts
 
-- `data/` contains the dataset files.
-- `models/` contains the Spark ML models.
-- `notebooks/` has the Jupyter or Zeppelin notebooks of your project and used just for learning purposes.
-- `output/` represents the output directory for storing the results of the project. It can contain `csv` files, text files. images and any other materials you returned as an ouput of the pipeline.
-- `scripts/` is a place for storing `.sh` scripts and `.py` scripts of the pipeline.
-- `sql/` is a folder for keeping all `.sql` and `.hql` files.
+`requirements.txt` The usual Python requirements for any dependencies: We use Python 2.7 as it is compabible with Hadoop 2.6.5 version.
 
-`requirements.txt` lists the Python packages needed for running your Python scripts. Feel free to add more packages when necessary.
+# Different Stages
+1. The 1st stage downloads the data, creates the SQL tables and saves it in avro format 
+2. The 2nd stage creates Hive Tables and partitions for optimizations purposes, saves a number the results from a number of queries as part of our Exploratory Data Analysis
+3. The 3rd stage uses the Hive tables, performs further processing and feature engineering and performs Predective analysis on the processed data
+4. The 4th stage uses builds on top of the results of previous stages, by displaying a neat Dashboard with streamlit
 
-`main.sh` is the main script that will run all scripts of the pipeline stages which will execute the full pipeline and store the results in `output/` folder. During checking your project repo, the grader will run only the main script and check the results in `output/` folder.
+# How to run
+1. wget https://archive.cloudera.com/hwx-sandbox/hdp/hdp-2.6.5/HDP_2.6.5_deploy-scripts_180624d542a25.zip
+2. unzip HDP_2.6.5_deploy-scripts_180624d542a25.zip
+3. bash docker-deploy-hdp265.sh
+4. Enter the sandbox: ssh -o ServerAliveInterval=60 -p 2222 root@localhost 
+5. Assuming the working directory contains the repository directories, run `main.sh` file: bash main.sh 
 
-**Important Note:** You cannot change the content of the script `main.sh` since it will be used for assessment purposes.
-
-**Another Note:** The notebooks in `notebooks/` folder are used only for learning purposes since you need to put all Python scripts of the pipeline in `scripts/` folder. During the assessment, the grader can delete the folder `notebooks/` to check that your pipeline does not depend on its content.
-
-# Our notes
-The files in `notebooks/` are not supposed to be run on the virtual machine. They require python3 and too much package installations.
+# NB
+1. The files in `notebooks/` are not supposed to be run on the virtual machine. The visualization and analytical functionalities there require python.3 version and a large number of additional packages.
+2. We assume that the code will be run on a Machine with at least 8GB of ram. In case of unexpected memory issues please refer to the `stage3.sh` script and lower the amount of RAM allocated for Pyspark. This might come with the cost of decrease in performance.  
