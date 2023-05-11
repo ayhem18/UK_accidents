@@ -23,7 +23,7 @@ It consists of the following directories
 2. `unzip HDP_2.6.5_deploy-scripts_180624d542a25.zip`
 3. `bash docker-deploy-hdp265.sh`
 4. Enter the sandbox: `ssh -o ServerAliveInterval=60 -p 2222 root@localhost`
-5. Assuming the working directory contains the repository directories, run `main.sh` file: bash main.sh 
+5. Assuming the working directory contains the repository directories, run `main.sh` file: `bash main.sh`
 
 # NB
 1. The files in `notebooks/` are not supposed to be run on the virtual machine. The visualization and analytical functionalities there require python.3 version and a large number of additional packages.
