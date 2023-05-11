@@ -142,8 +142,6 @@ for sf in special_features:
 merged.select(*special_features).show(10)
 
 
-# convert the time
-
 # convert the time and date
 def convert_time(x):
     return int(x[:2])
