@@ -11,7 +11,7 @@ import matplotlib.ticker as mtick
 # Load all outputs
 QS = [pd.read_csv("output/q" + str(i) + ".csv") for i in range(1, 9)]
 
-ST.write("# Big Data Project  \n _Car Accident Severety_$^{Prediction}$ :sunglasses:  \n", "Made by: Ayhem Bouabid & Sinii Viacheslav \n", "*Year*: **2023**")
+ST.write("# Big Data Project  \n _Car Accident Severety_$^{Prediction}$ :sunglasses:  \n", "Made by: Ayhem Bouabid & Sinii Viacheslav  \n", "*Year*: **2023**")
 
 ST.write("## Data Characteristics \n", "The dataset does not contain any NaN values:\n")
 nan_values = pd.read_csv("output/nan_values.csv")
@@ -45,7 +45,9 @@ ACCIDENTS_TEXT = """
 ST.markdown(ACCIDENTS_TEXT)
 
 VEHICLES_TEXT = """
+	### Vehicles
 	* The data provides a detailed description of the vehicle
+	* Each unique vehicle is defined by the (accident_index, vehicle_reference) tuple. 'vehicle_reference' column indicates vehicle w.r.t. the accident.
 	* The fields most likely should be combined into a fewer but more general representations
 	* Certain fields might be dropped:
 	  * Vehicle Location: can be deduced to a certain extent by the type of the road / location the accident took place
@@ -56,6 +58,8 @@ VEHICLES_TEXT = """
 	"""
 
 ST.markdown(VEHICLES_TEXT)
+
+ST.markdown("### Target  \n Predict casualty severity")"
 
 ST.write("## EDA")
 
@@ -71,6 +75,9 @@ AX.set_xlabel("Casualty type")
 AX.set_ylabel("Percentage")
 AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 
+ST.write("""
+	First let's see how many 
+	""")
 ST.write(FIG)
 
 
