@@ -13,9 +13,4 @@ Streamlit.
   Enter the following command to upgrade:
   $ pip install streamlit --upgrade
 
-
-  You can now view your Streamlit app in your browser.
-
-  Network URL: http://172.18.0.2:60000
-  External URL: http://185.27.192.84:60000
-
+Port 60000 is already in use

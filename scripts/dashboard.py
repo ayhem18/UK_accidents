@@ -46,7 +46,7 @@ ACCIDENTS_TEXT = """
 	  * Urban / Rural area: Rural area are more likely to have more fatal accidents: more serious casualities
 	  * SPEED LIMIT
 	"""
-ST.markdown(body=ACCIDENTS_TEXT)
+ST.write(ACCIDENTS_TEXT)
 
 VEHICLES_TEXT = """
 	### Vehicles
@@ -61,14 +61,14 @@ VEHICLES_TEXT = """
 	any information about the driver can be found in the casuality table, so it should be dropped from the vehicle table
 	"""
 
-ST.markdown(body=VEHICLES_TEXT)
+ST.write(VEHICLES_TEXT)
 
 DATA_STATS = pd.read_csv("output/data_stats.csv")
-ST.markdown(body="### Results of Data Preparation  \n " \
+ST.write("### Results of Data Preparation  \n " \
 	+ "Before the cleaning there were " + str(DATA_STATS.iloc[0, 2]) \
 	+ " columns. We performed extensive cleaning and were left with " + str(DATA_STATS.iloc[0, 0]) \
 	+ " columns.")
-ST.markdown(body="### Target  \n Predict casualty severity")
+ST.write("### Target  \n Predict casualty severity")
 
 ST.write("## EDA")
 
@@ -143,7 +143,7 @@ X_NAMES = [NICE_NAMES[x] for x in QS[1].columns[1:]]
 TITLE = "Severity of casualty depending on who is injured"
 # plot
 
-ST.markdown(body="Pedestrians have a much higher risk of a serious injury " \
+ST.write("Pedestrians have a much higher risk of a serious injury " \
             + "compared to people located in the car.")
 cond_plot(QS[1], Y_NAMES, X_NAMES, TITLE)
 
@@ -175,7 +175,7 @@ AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 AX.legend(loc="best")
 
 
-ST.markdown(body="Here we study the severity of the casualty depending on "\
+ST.write("Here we study the severity of the casualty depending on "\
             + "the speed limit of the road where the accident happened. "\
             + "As the speed limit increases, the vehicles become deadlier "\
             + "leading to more serious injuries. Local regulations should be "\
@@ -195,7 +195,7 @@ AX.set_title("Age of casualties depending on severity")
 AX.set_xlabel("Casualty type")
 AX.set_ylabel("Average Age")
 
-ST.markdown(body="Now we want to see whether there is a connection between casualty severity "\
+ST.write("Now we want to see whether there is a connection between casualty severity "\
 	    + "and the age of a person. The graph below indicates that on average older people "\
 	    + "have a higher risk of fatal or serious injury compared to youngsters. "\
 	    + "This information may be crucial when medical aid decide who has to have "\
@@ -215,7 +215,7 @@ AX.set_title("Severeness of accidents in each district")
 AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 
 
-ST.markdown(body="For each district in the country we extracted two values: "\
+ST.write("For each district in the country we extracted two values: "\
 	    + "total number of accidents that took place there and the "\
 	    + "percentage of severe accidents. The graph below shows that "\
 	    + "districts with less accidents are more dangerous. Small number "\
@@ -233,7 +233,7 @@ PREDICTIONS_TEXT = "## Predictions.  \n We trained two models - "\
 	+ "in the opinion of each model along with real "\
 	+ "values of the samples. We took 10 random samples "\
 	+ "for illustrative purposes."
-ST.markdown(body=PREDICTIONS_TEXT)
+ST.write(PREDICTIONS_TEXT)
 
 LR_PREDICTIONS = pd.read_csv('output/logistic_regression_predictions.csv')
 RF_PREDICTIONS = pd.read_csv('output/random_forests_predictions.csv')
@@ -262,5 +262,9 @@ METRICS_TEXT = \
 	+ "have higher metrics values, i.e. performs better."
 METRICS = pd.read_csv('output/metrics.csv')
 METRICS.columns = [u'Model', u'area_under_curve', u'area_under_pr_curve']
-ST.markdown(body=METRICS_TEXT)
+ST.write(METRICS_TEXT)
 ST.write(METRICS)
+
+ST.write("### Confusion Matrix  \n")
+CONF_MATRIX = pd.read_csv("output/confusion_matrix.csv")
+cond_plot(CONF_MATRIX, ['TP', 'TN'], ['FP', 'FN'], "Confusion Matrix")

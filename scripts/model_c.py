@@ -299,54 +299,49 @@ def evaluate(model, train_data, test_data):
 RFC = RandomForestClassifier(
     labelCol=LABEL, featuresCol=FEATS, predictionCol=P, seed=69)
 
-LR = LogisticRegression(
+
+from pyspark.ml.classification import LinearSVC
+
+
+LR = LinearSVC(
     labelCol=LABEL,
     featuresCol=FEATS,
     maxIter=100,
     regParam=0.3,
-    elasticNetParam=0.8,
-    predictionCol=P,
-    weightCol='weight')
+    tol=10 ** -6,
+    predictionCol=P) 
 
 
-LR_PARAMS = [[LR.regParam,
-              [10.0 ** i for i in range(-3, 1)]],
-             [LR.elasticNetParam, list(np.linspace(0, 1, 6))]]
+LR_PARAMS = [[LR.regParam, [
+    10.0 ** i for i in range(-3, 1)]], [LR.tol, [10 ** -6, 10 ** -5,]]]
 
-RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))],
-             [RFC.minInstancesPerNode, [10, 100, 1000]]]
+
+RF_PARAMS = [[RFC.maxDepth, list(range(4, 8))], [RFC.minInstancesPerNode, [10, 100, 1000]]]
+
 
 # let's prepare the weights for Logistic Regression
-Y_COLLECT = TRAIN.select(LABEL).groupBy(LABEL).count().collect()
-print Y_COLLECT
-UNIQUE_Y = [x[LABEL] for x in Y_COLLECT]
-TOTAL_Y = sum([x["count"] for x in Y_COLLECT])
-print TOTAL_Y
-UNIQUE_Y_COUNT = len(Y_COLLECT)
-BIN_COUNT = [x["count"] for x in Y_COLLECT]
-WEIGHTS = float(TOTAL_Y) / (UNIQUE_Y_COUNT * np.array(BIN_COUNT))
-CLASS_WEIGHTS_SPARK = {i: ii for i, ii in zip(UNIQUE_Y, WEIGHTS)}
-print CLASS_WEIGHTS_SPARK
+#Y_COLLECT = TRAIN.select(LABEL).groupBy(LABEL).count().collect()
+#print Y_COLLECT
+#UNIQUE_Y = [x[LABEL] for x in Y_COLLECT]
+#TOTAL_Y = sum([x["count"] for x in Y_COLLECT])
+#print TOTAL_Y
 
-MAPPING_EXPR = F.create_map([F.lit(x) for x in chain(*CLASS_WEIGHTS_SPARK.items())])
 
-TRAIN_LR = TRAIN.withColumn("weight", MAPPING_EXPR.getItem(F.col(LABEL)))
 
 # make sure to cache the train and test dataframes
 TRAIN = TRAIN.cache()
 TEST = TEST.cache()
-TRAIN_LR = TRAIN_LR.cache()
 
-BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN_LR)
+BEST_LR = kfold_validation(LR, LR_PARAMS, TRAIN)
 BEST_RFC = kfold_validation(RFC, RF_PARAMS, TRAIN)
 
 
 # evaluate both models on the test data using the predefined metrics
-LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN_LR, TEST)
+LR_PREDS, LR_AUC, LR_APR = evaluate(BEST_LR, TRAIN, TEST)
 RF_PREDS, RF_AUC, RF_APR = evaluate(BEST_RFC, TRAIN, TEST)
 
 print "RANDOM FOREST'S METRICS: AUC " + str(RF_AUC) + " Area Under PR " + str(RF_APR)
-print "LOGISTIC REGRESSION'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR)
+print "SVM'S METRICS: AUC " + str(LR_AUC) + " Area Under PR" + str(LR_APR)
 
 
 # time to save the predictions
