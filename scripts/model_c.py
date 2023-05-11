@@ -365,3 +365,16 @@ RES = pd.DataFrame(
         'logistic_regression',
         'random_forest'])
 RES.to_csv('output/metrics.csv', index=True)
+
+# build the confusion matrices
+LR_CM = LR_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
+RF_CM = RF_PREDS.groupBy(LABEL).agg(F.sum(P).alias('predicted_as_serious'), (F.count(P) - F.sum(P)).alias('predicted_as_slight'))
+
+# save the confusion matrices
+
+LR_CM.toPandas().to_csv("output/logistic_regression_CM.csv")
+RF_CM.toPandas().to_csv("output/random_forest_CM.csv")
+
+
+
+
