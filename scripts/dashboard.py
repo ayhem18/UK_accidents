@@ -59,6 +59,12 @@ VEHICLES_TEXT = """
 
 ST.markdown(VEHICLES_TEXT)
 
+data_stats = pd.read_csv("output/data_stats.csv")
+ST.markdown("### Results of Data Preparation  \n " \
+	+ "Before the cleaning there were " + str(data_stats.iloc[0, 2]) \
+	+ " columns. We performed extensive cleaning and were left with " + str(data_stats.iloc[0, 0]) \
+	+ " columns. Also, we remove NaN values reducing the number of rows from " \
+	+ str(data_stats.iloc[0, 3]) + " to " + str(data_stats.iloc[0, 1]) + ".")
 ST.markdown("### Target  \n Predict casualty severity")
 
 ST.write("## EDA")
@@ -131,8 +137,10 @@ Y_NAMES = CAS_CLASSES\
 NICE_NAMES = {"possibly_fatal_percent": "Possibly Fatal",
               "slight_casualities_percent": "Slight"}
 X_NAMES = [NICE_NAMES[x] for x in QS[1].columns[1:]]
-TITLE = "Severity of casualty depending on who is insured"
+TITLE = "Severity of casualty depending on who is injured"
 # plot
+
+ST.markdown("Pedestrians have a much higher risk of a serious injury compared to people located in the car")
 cond_plot(QS[1], Y_NAMES, X_NAMES, TITLE)
 
 
@@ -141,6 +149,7 @@ NICE_NAMES = {"severe_casualties_ratio": "Severe",
               "slight_casualties_ratio": "Slight"}
 X_NAMES = [NICE_NAMES[x] for x in QS[2].columns[1:]]
 TITLE = "Casualty severity by speciality"
+
 cond_plot(QS[2], ["Non-special", "Special"],
           X_NAMES, TITLE, are_percentages=True)
 
@@ -157,10 +166,12 @@ AX.plot(QS[4].iloc[:, 0], QS[4].iloc[:, 1], label="Severe")
 #AX.plot(QS[4].iloc[:, 0], QS[4].iloc[:, 2], label="Slight")
 AX.set_xlabel("Speed Limit")
 AX.set_ylabel("Percentage")
-AX.set_title("Casualty severness depending on speed limit")
+AX.set_title("Casualty severity depending on speed limit.")
 AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 AX.legend(loc="best")
 
+
+ST.markdown("Here we study the severity of the casualty depending on the speed limit of the road where the accident happened. As the speed limit increases, the vehicles become deadlier leading to more serious injuries. Local regulations should be more cautios about setting the speed limit on some roads.  \nThus speed limit math be a very informative feature to predict the casualty severity.")
 ST.write(FIG)
 
 
@@ -175,6 +186,7 @@ AX.set_title("Age of casualties depending on severity")
 AX.set_xlabel("Casualty type")
 AX.set_ylabel("Average Age")
 
+ST.markdown("Now we want to see whether there is a connection between casualty severity and the age of a person. The graph below indicates that on average older people have a higher risk of fatal or serious injury compared to youngsters. This information may be crucial when medical aid decide who has to have higher priority for help.  \n The age feature may be useful for predictions.") 
 ST.write(FIG)
 
 
@@ -190,4 +202,5 @@ AX.set_title("Severeness of accidents in each district")
 AX.yaxis.set_major_formatter(mtick.PercentFormatter())
 
 
+ST.markdown("For each district in the country we extracted two values: total number of accidents that took place there and the percentage of severe accidents. The graph below shows that districts with less accidents are more dangerous. Small number of accidents may be due to a low number of people living there, i.e. districts in the countryside or suburbs. Thus, they are probably being less developed and have worse conditions leading to more severe accidents taking place.")
 ST.write(FIG)
