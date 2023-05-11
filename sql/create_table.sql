@@ -66,8 +66,8 @@ age_of_vehicle int,
 driver_home_area_type smallint,
 driver_imd_decile smallint,
 unique (accident_index, vehicle_reference),
-PRIMARY KEY (accident_index, vehicle_reference)
---FOREIGN KEY (accident_index) REFERENCES accident(accident_index)
+PRIMARY KEY (accident_index, vehicle_reference),
+FOREIGN KEY (accident_index) REFERENCES accident (accident_index)
 );
 
 
@@ -90,15 +90,15 @@ cas_type smallint,
 cas_home_area_type smallint,
 cas_age_band     smallint,
 unique (accident_index, vehicle_reference, cas_ref),
-primary key (accident_index, vehicle_reference, cas_ref)
+primary key (accident_index, vehicle_reference, cas_ref),
 --FOREIGN KEY (accident_index) REFERENCES accident (accident_index),
 --FOREIGN KEY (vehicle_reference) REFERENCES vehicle (vehicle_reference)
+FOREIGN KEY (accident_index, vehicle_reference) REFERENCES vehicle (accident_index, vehicle_reference)
 );
 
 
 
 \copy accident FROM '/root/UK_accidents/data/accidents.csv'  DELIMITER ',' CSV HEADER;
---delete from accident where accident_severity != 1;
 
 \copy vehicle FROM '/root/UK_accidents/data/vehicles.csv' DELIMITER ',' CSV HEADER;
 

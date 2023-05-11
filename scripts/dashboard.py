@@ -11,6 +11,54 @@ import matplotlib.ticker as mtick
 # Load all outputs
 QS = [pd.read_csv("output/q" + str(i) + ".csv") for i in range(1, 9)]
 
+ST.write("# Big Data Project  \n _Car Accident Severety_$^{Prediction}$ :sunglasses:  \n", "Made by: Ayhem Bouabid & Sinii Viacheslav \n", "*Year*: **2023**")
+
+ST.write("## Data Characteristics \n", "The dataset does not contain any NaN values:\n")
+nan_values = pd.read_csv("output/nan_values.csv")
+ST.write(nan_values)
+
+ST.write("## Data Preprocessing \n")
+ACCIDENTS_TEXT = """
+	### Accidents
+	Going through the explanations of the fields, it is possible to reduce the number of features as some of them do not introduce any additional value for our predictive task.
+	The following will be dropped because these values represent the location of the accident with respect to a local geospatial system. This information duplicates another two columns which are longitude and latitude.
+
+	1. Location Easting OSGR (Null if not known)
+	2. Location Northing OSGR (Null if not known)
+
+	Other columns:
+
+	3. The police attendance - it happens after the accident happens
+	4. Longitude and Latitude might be dropped as the data is already clustered into different districts 
+	5. Accident Severity: this value is practically equivalent to the target: the severity of casualities 
+	6. Police: The police's intervention takes place generally after the accident. Such intervention could not possible affect the accident's severity and the casualities' seriousness
+
+	Additional remarks:
+
+	* The most seemingly important features are:
+	  * 1st /2nd Road Class / if it reflects quality
+	  * weather conditions / Light Conditions
+	  * Pedestrian Crossing Human control: we don't expect many accidents in conjuctions controlled by police officer: HOWEVER IT MIGHT HAVE SOME OVERLAPPING WITH CONJUNCTION CONTROL
+	  * Urban / Rural area: Rural area are more likely to have more fatal accidents: more serious casualities
+	  * SPEED LIMIT
+	"""
+ST.markdown(ACCIDENTS_TEXT)
+
+VEHICLES_TEXT = """
+	* The data provides a detailed description of the vehicle
+	* The fields most likely should be combined into a fewer but more general representations
+	* Certain fields might be dropped:
+	  * Vehicle Location: can be deduced to a certain extent by the type of the road / location the accident took place
+	  * Vehicle Maneouver is to be dropped
+	  * There are two Hit Object features that can be merged into one
+	  * The IMD level as well as the home area of the driver do not seem to have direct relation with the seriousness of the casuality
+	any information about the driver can be found in the casuality table, so it should be dropped from the vehicle table
+	"""
+
+ST.markdown(VEHICLES_TEXT)
+
+ST.write("## EDA")
+
 # First plot
 FIG = plt.figure(figsize=(10, 5))
 AX = FIG.add_subplot(1, 1, 1)
