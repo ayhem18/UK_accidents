@@ -1,6 +1,9 @@
 # Overview
 This repository is our final project for the BIG DATA course offered in Innopolis University Spring 2023: UK_accidents. Our main goal is to build a Big Data pipeline starting from extracting the data,
-saving it, analyzing it and then introducing Predective analysis. As the repository's name suggests, we are digging deeper into accidents taking place in the United Kingdom
+saving it, analyzing it and then introducing Predective analysis. As the repository's name suggests, we are digging deeper into accidents taking place in the United Kingdom. 
+
+See the project's dashboard at `dashboard.pdf`.
+
 # Repository Structure
 It consists of the following directories
 1. `data/` where the data is saved.
